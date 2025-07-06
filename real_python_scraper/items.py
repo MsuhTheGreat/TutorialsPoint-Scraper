@@ -8,5 +8,10 @@ import scrapy
 
 class RealPythonItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    author = scrapy.Field()
+    publish_date = scrapy.Field()
+    summary = scrapy.Field()
+    list_of_contents = scrapy.Field()
+    tags = scrapy.Field()
+    url = scrapy.Field()
