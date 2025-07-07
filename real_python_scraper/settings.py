@@ -90,3 +90,8 @@ ROBOTSTXT_OBEY = False
 # Set settings whose default value is deprecated to a future-proof value
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+# DOWNLOAD_DELAY = 0.1  # wait 2 seconds between requests
+# RANDOMIZE_DOWNLOAD_DELAY = True  # make it more human-like
+# CONCURRENT_REQUESTS_PER_DOMAIN = 2
+
