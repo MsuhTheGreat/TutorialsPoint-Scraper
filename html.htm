@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="en-US" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<head>
+<title>Python vs C++</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+<meta name="keywords" content="Python, C++, programming languages, syntax comparison, performance, use cases, coding, software development">
+<meta name="description" content="Explore the key differences between Python and C++, including syntax, performance, and use cases to help you choose the right programming language for your projects.">
+<!-- Open Graph Meta Tags for Social Sharing -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python vs C++: Key Differences Explained">
+<meta property="og:description" content="Explore the key differences between Python and C++, including syntax, performance, and use cases to help you choose the right programming language for your projects.">
+<meta property="og:url" content="https://www.tutorialspoint.com/python/python_vs_cpp.htm">
+<meta property="og:image" content="https://www.tutorialspoint.com/images/tp_logo_436.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="436">
+<meta property="og:image:height" content="228">
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Python vs C++: Key Differences Explained">
+<meta name="twitter:description" content="Explore the key differences between Python and C++, including syntax, performance, and use cases to help you choose the right programming language for your projects.">
+<meta name="twitter:image" content="https://www.tutorialspoint.com/images/tp_logo_436.png">
+<!-- Favicon -->
+<link rel="icon" href="https://www.tutorialspoint.com/images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<!-- Preload Google Fonts -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "mainEntityOfPage": {
+     "@type": "WebPage",
+     "id": "https://www.tutorialspoint.com/python/python_vs_cpp.htm"
+   },
+  "headline": "Python vs C++",
+  "description": "Explore the key differences between Python and C++, including syntax, performance, and use cases to help you choose the right programming language for your projects.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TutorialsPoint",
+     "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.tutorialspoint.com/images/tp_logo_436.png"
+      }
+   },
+   "proficiencyLevel": "Beginner",
+   "educationalUse": "Tutorial"
+}
+</script>
+<script>
+   window.googletag = window.googletag || {};
+   window.googletag.cmd = window.googletag.cmd || [];
+   window.googletag.cmd.push(() => {
+        window.googletag.pubads().enableAsyncRendering();
+        window.googletag.pubads().disableInitialLoad();
+  });
+  const injectPgScript = (src, isAsync, onLoadCallback) => {
+    if (!src)
+      return;
+    const script = document.createElement("script");
+    script.src = src;
+    if (isAsync)
+      script.async = isAsync;
+    if (onLoadCallback)
+      script.onload = onLoadCallback;
+    document.head.appendChild(script);
+  };
+  const initiatePgAds = () => {
+    !!window.__tcfapi && window.__tcfapi("addEventListener", 2, (tcData, success) => {
+      if (success && (tcData.eventStatus === "useractioncomplete" || tcData.eventStatus === "tcloaded" || tcData.gdprApplies === false)) {
+        if (!window._initAds) {
+          window._initAds = true;
+          injectPgScript("//dsh7ky7308k4b.cloudfront.net/publishers/tutorialspointcom.min.js", true);
+          injectPgScript("//btloader.com/tag?o=5184339635601408&upapi=true", true);
+        }
+      }
+    }
+    );
+  };
+  injectPgScript("https://securepubads.g.doubleclick.net/tag/js/gpt.js?8095840", true, () => {
+    window.googlefc = window.googlefc || {
+      callbackQueue: []
+    };
+    window.googlefc.callbackQueue.push({
+      "CONSENT_API_READY": () => initiatePgAds()
+    });
+  });
+</script>
+<link rel="stylesheet" href="/static/css/new-lib-style.css?mv44.9" media="screen, print">
+<link rel="canonical" href="https://www.tutorialspoint.com/python/python_vs_cpp.htm">
+</head>
+<body class="[--nav-1-height:44px] md:[--nav-2-height:68px] [--nav-2-height:60px] [--nav-3-height:40px]">
+   <nav class="bg-[#2c9d30] z-[11] text-sm max-lg:sticky top-0 text-white flex items-center h-(--nav-1-height) [&_a]:hover:underline">
+      <div
+         class="w-(--container) px-4 mx-auto flex items-center gap-6 overflow-x-auto scrollbar-hidden whitespace-nowrap">
+         <a class="min-w-fit" href="/index.htm" alt="Online Courses, Certifications &amp; eBooks">
+            <i class="fa-sharp fa-light fa-home"></i> Home
+         </a>
+         <a class="min-w-fit" href="/whiteboard.htm" title="Online Whiteboard">
+            <i class="fa-sharp fa-light fa-chalkboard"></i> Whiteboard</a>
+         </a>
+         <a class="min-w-fit" href="/compilers/index.htm" title="Online Compilers and Editors">
+            <i class="fa-sharp fa-light fa-code"></i> Online Compilers
+         </a>
+         <a class="min-w-fit" href="/practice/index.htm" title="Practice">
+            <i class="fa-sharp fa-light fa-display-code"></i> Practice
+         </a>
+         <a class="min-w-fit" href="/articles/index.php" alt="Tutorials And Articles">
+            <i class="fa-sharp fa-light fa-pen-to-square top-nav-icon"></i> Articles
+         </a>
+         <a class="min-w-fit" href="/assist.php" title="AI Study Assistant">
+            <i class="fa-sharp fa-light fa-message-bot"></i> AI Assistant</a>
+         </a>
+         <a class="min-w-fit" href="/job_search.php" alt="Latest Jop Openings">
+            <i class="fa-sharp fa-light fa-suitcase top-nav-icon"></i> Jobs
+         </a>
+	      <a class="min-w-fit" href="/online_dev_tools.htm" alt="Development Tools">
+	         <i class="fa-sharp fa-light fa-tools"></i> Tools
+         </a>         
+         <a class="min-w-fit" href="https://market.tutorialspoint.com/business/index.asp" alt="Corporate Training - Training For A Team">
+            <i class="fa-sharp fa-light fa-screen-users top-nav-icon"></i> Corporate Training
+         </a>
+         
+         <div class="ml-auto flex items-center gap-2">
+            <a class=" bg-[#318634] size-8 grid place-items-center" target="_blank"
+               href="https://www.facebook.com/tutorialspointindia" aria-label="Connect with us on Facebook" rel="nofollow">
+               <i class="fa-sharp fa-light fa-brands fa-facebook-f !h-[18px]"></i>
+            </a>
+            <a class="bg-[#318634] size-8 grid place-items-center" target="_blank"
+               href="https://x.com/tutorialspoint" aria-label="Connect with us on X" rel="nofollow">
+               <i class="fa-sharp fa-light fa-brands fa-x-twitter !h-[18px]"></i>
+            </a>
+            <a class="bg-[#318634] size-8 grid place-items-center" target="_blank" rel="nofollow"
+               href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" aria-label="Connect with us on Youtube">
+               <i class="fa-sharp fa-light fa-brands fa-youtube !h-[18px]"></i>
+            </a>
+            <a class="bg-[#318634] size-8 grid place-items-center" target="_blank"
+               href="https://www.linkedin.com/company/tutorialspoint/" aria-label="Connect with us on LinkedIn" rel="nofollow">
+               <i class="fa-sharp fa-light fa-brands fa-linkedin-in !h-[18px]"></i>
+            </a>
+            <a class="bg-[#318634] size-8 grid place-items-center" target="_blank"
+               href="https://www.instagram.com/tutorialspoint_/" aria-label="Connect with us on Instagram" rel="nofollow">
+               <i class="fa-sharp fa-light fa-brands fa-instagram !h-[18px]"></i>
+            </a>            
+         </div>
+      </div>
+      <div class="w-(--container) lg:hidden px-4 mx-auto absolute h-full pointer-events-none inset-x-0">
+         <div class="absolute inset-y-0 right-0 h-full w-10 bg-gradient-to-l from-[#2c9d30] to-transparent"
+            aria-hidden="true">
+         </div>
+      </div>
+   </nav>
+   <nav
+      class="h-(--nav-2-height) z-[11] sticky bg-white top-(--nav-1-height) lg:top-0 px-3 flex items-center border-b border-gray-300">
+      <div class="w-(--container) mx-auto  flex gap-3 items-center">
+         <a href="https://www.tutorialspoint.com" class="block md:w-full md:max-w-[226px]" title="Tutorialspoint">
+            <svg class="max-md:hidden w-full" xmlns="http://www.w3.org/2000/svg" width="226" height="42" viewBox="0 0 226 42" fill="none">
+               <path
+                  d="M76.2136 13.8408V27.7576H72.3845V26.1045C71.3229 27.3193 69.7701 27.9689 68.0642 27.9689C64.5731 27.9689 62.1172 26.0042 62.1172 21.7103V13.8461H66.1523V21.1135C66.1523 23.4426 67.1874 24.4778 68.9726 24.4778C70.7577 24.4778 72.1785 23.2895 72.1785 20.7279V13.8461H76.2136V13.8408Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M89.1484 20.7959C89.1484 16.6077 92.3807 13.6289 96.8066 13.6289C101.233 13.6289 104.438 16.6024 104.438 20.7959C104.438 24.9894 101.233 27.9629 96.8066 27.9629C92.3807 27.9629 89.1484 24.9894 89.1484 20.7959ZM100.351 20.7959C100.351 18.3928 98.8242 16.9404 96.8066 16.9404C94.7891 16.9404 93.2363 18.3876 93.2363 20.7959C93.2363 23.2043 94.7891 24.6514 96.8066 24.6514C98.8242 24.6514 100.351 23.2043 100.351 20.7959Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M115.28 13.6348V17.3582C114.942 17.3318 114.683 17.3054 114.377 17.3054C112.153 17.3054 110.68 18.5202 110.68 21.1873V27.7575H106.645V13.8407H110.5V15.6787C111.482 14.3319 113.141 13.6348 115.285 13.6348H115.28Z"
+                  fill="#40A944"></path>
+               <path d="M117.695 13.8408H121.73V27.7576H117.695V13.8408Z" fill="#40A944">
+               </path>
+               <path
+                  d="M139.119 13.8402V27.757H135.263V26.1514C134.255 27.3661 132.781 27.9629 130.917 27.9629C126.987 27.9629 123.961 25.169 123.961 20.7959C123.961 16.4228 126.987 13.6289 130.917 13.6289C132.623 13.6289 134.07 14.1729 135.079 15.3084V13.8349H139.114L139.119 13.8402ZM135.163 20.7959C135.163 18.3928 133.61 16.9404 131.619 16.9404C129.628 16.9404 128.049 18.3876 128.049 20.7959C128.049 23.2043 129.602 24.6514 131.619 24.6514C133.637 24.6514 135.163 23.2043 135.163 20.7959Z"
+                  fill="#40A944"></path>
+               <path d="M146.402 8.5625H142.367V27.7555H146.402V8.5625Z" fill="#40A944">
+               </path>
+               <path
+                  d="M149.141 26.4622L150.487 23.5679C151.729 24.3707 153.619 24.9147 155.325 24.9147C157.19 24.9147 157.887 24.4235 157.887 23.6471C157.887 21.3708 149.479 23.7 149.479 18.1385C149.479 15.4978 151.861 13.6387 155.917 13.6387C157.829 13.6387 159.952 14.077 161.272 14.8534L159.925 17.7266C158.552 16.9502 157.184 16.6914 155.917 16.6914C154.105 16.6914 153.329 17.2618 153.329 17.9854C153.329 20.3673 161.737 18.0646 161.737 23.5468C161.737 26.1347 159.334 27.9674 155.167 27.9674C152.811 27.9674 150.435 27.3231 149.141 26.4675V26.4622Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M178.226 20.9541C178.226 25.0948 175.332 27.8835 171.45 27.8835C169.279 27.8835 167.415 26.9539 166.279 25.1952V32.7742H164.441V14.1515H166.2V16.8398C167.315 15.0283 169.2 14.0459 171.45 14.0459C175.332 14.0459 178.226 16.8398 178.226 20.9541ZM176.388 20.9541C176.388 17.8011 174.191 15.6515 171.318 15.6515C168.445 15.6515 166.248 17.7958 166.248 20.9541C166.248 24.1125 168.418 26.2568 171.318 26.2568C174.218 26.2568 176.388 24.1336 176.388 20.9541Z"
+                  fill="#000"></path>
+               <path
+                  d="M180.129 20.9541C180.129 16.919 183.076 14.0459 187.058 14.0459C191.041 14.0459 193.966 16.919 193.966 20.9541C193.966 24.9892 191.046 27.8835 187.058 27.8835C183.071 27.8835 180.129 24.9892 180.129 20.9541ZM192.102 20.9541C192.102 17.7747 189.953 15.6515 187.058 15.6515C184.164 15.6515 181.988 17.7747 181.988 20.9541C181.988 24.1336 184.159 26.2568 187.058 26.2568C189.958 26.2568 192.102 24.1336 192.102 20.9541Z"
+                  fill="#000"></path>
+               <path d="M196.754 14.1523H198.592V27.7575H196.754V14.1523Z" fill="#000"></path>
+               <path
+                  d="M215.288 19.8661V27.7567H213.45V20.051C213.45 17.1778 211.95 15.7043 209.362 15.7043C206.442 15.7043 204.604 17.5159 204.604 20.6161V27.7567H202.766V14.1515H204.524V16.6602C205.507 15.0071 207.345 14.0459 209.695 14.0459C213.006 14.0459 215.283 15.9578 215.283 19.8661H215.288Z"
+                  fill="#000"></path>
+               <path
+                  d="M59.3346 24.2389C58.8699 24.5769 58.2731 24.7565 57.6815 24.7565C56.5935 24.7565 55.9756 24.1122 55.9756 22.9185V17.2568H59.4139V14.1512H55.9756V10.2852L51.9405 11.2411V14.1512H50.2188V17.2568H51.9405V22.9714C51.9405 26.2829 53.8313 27.9624 57.1375 27.9624C58.3523 27.9624 59.567 27.6772 60.3962 27.0804L59.3346 24.2336V24.2389Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M87.2878 24.2389C86.823 24.5769 86.2262 24.7565 85.6347 24.7565C84.5467 24.7565 83.9287 24.1122 83.9287 22.9185V17.2568H87.367V14.1512H83.9287V10.2852L79.8936 11.2411V14.1512H78.1719V17.2568H79.8936V22.9714C79.8936 26.2829 81.7844 27.9624 85.0907 27.9624C86.3054 27.9624 87.5202 27.6772 88.3494 27.0804L87.2878 24.2336V24.2389Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M119.713 11.8222C120.827 11.8222 121.73 10.9189 121.73 9.80465C121.73 8.69039 120.827 7.78711 119.713 7.78711C118.599 7.78711 117.695 8.69039 117.695 9.80465C117.695 10.9189 118.599 11.8222 119.713 11.8222Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M197.674 11.8222C198.788 11.8222 199.691 10.9189 199.691 9.80465C199.691 8.69039 198.788 7.78711 197.674 7.78711C196.56 7.78711 195.656 8.69039 195.656 9.80465C195.656 10.9189 196.56 11.8222 197.674 11.8222Z"
+                  fill="#40A944"></path>
+               <path
+                  d="M225.15 25.6071C224.633 26.0719 223.909 26.3043 223.133 26.3043C221.606 26.3043 220.803 25.4223 220.803 23.822V15.699H224.918V14.1462H220.803V10.2168L218.965 11.1728V14.1462H217.043V15.699H218.965V23.9223C218.965 26.4311 220.386 27.8782 222.948 27.8782C224.009 27.8782 225.097 27.5666 225.794 26.9222L225.15 25.6019V25.6071Z"
+                  fill="#000"></path>
+               <path
+                  d="M27.3002 39.5829C33.1626 39.4561 38.4072 35.87 40.8842 30.5568C42.3208 27.4829 43.0444 24.013 42.8542 20.3582C42.2785 9.30395 33.1521 0.394029 22.082 0.0718569C9.95038 -0.282005 0 9.44655 0 21.5043C0 30.7099 5.80439 38.5583 13.9485 41.6004C13.1721 40.7871 12.6017 39.7941 12.2531 38.6217C11.7091 36.8101 11.725 34.6711 12.2954 32.2046L15.2319 19.8881H9.16343L10.1564 15.5837L10.4257 14.4429H16.5259L16.6368 13.9411L18.0628 7.76175L26.9727 6.05582L25.1506 13.9411L23.8408 19.8881L20.8197 33.2609C20.3602 35.2626 20.5398 36.8101 21.3743 37.8928C21.3743 37.8928 22.6207 39.6832 27.3002 39.5829ZM29.4128 13.4605C31.8951 12.9904 34.0288 15.1242 33.5588 17.6065C33.2947 18.9902 32.1803 20.1099 30.7912 20.374C28.3089 20.8441 26.1752 18.7103 26.6453 16.228C26.9093 14.8443 28.0237 13.7246 29.4128 13.4605Z"
+                  fill="#40A944"></path>
+            </svg>
+            <svg class="md:hidden" xmlns="http://www.w3.org/2000/svg" width="43" height="42" viewBox="0 0 43 42"
+               fill="none">
+               <path
+                  d="M27.3002 39.5829C33.1626 39.4561 38.4072 35.87 40.8842 30.5568C42.3208 27.4829 43.0444 24.013 42.8542 20.3582C42.2785 9.30395 33.1521 0.394029 22.082 0.0718569C9.95038 -0.282005 0 9.44655 0 21.5043C0 30.7099 5.80439 38.5583 13.9485 41.6004C13.1721 40.7871 12.6017 39.7941 12.2531 38.6217C11.7091 36.8101 11.725 34.6711 12.2954 32.2046L15.2319 19.8881H9.16343L10.1564 15.5837L10.4257 14.4429H16.5259L16.6368 13.9411L18.0628 7.76175L26.9727 6.05582L25.1506 13.9411L23.8408 19.8881L20.8197 33.2609C20.3602 35.2626 20.5398 36.8101 21.3743 37.8928C21.3743 37.8928 22.6207 39.6832 27.3002 39.5829ZM29.4128 13.4605C31.8951 12.9904 34.0288 15.1242 33.5588 17.6065C33.2947 18.9902 32.1803 20.1099 30.7912 20.374C28.3089 20.8441 26.1752 18.7103 26.6453 16.228C26.9093 14.8443 28.0237 13.7246 29.4128 13.4605Z"
+                  fill="#40A944"></path>
+            </svg>
+         </a>
+         <button data-toc-toggle aria-expanded="false" class="lg:mr-10 min-w-fit cursor-pointer group flex items-center gap-1.5">
+            Chapters
+            <i class="fa-sharp max-md:group-aria-expanded:-rotate-90 fa-light fa-angle-down"></i>
+         </button>
+         <div data-categories class="ml-auto lg:ml-7">
+            <button data-categories-toggle aria-expanded="false" class="lg:mr-10 min-w-fit cursor-pointer group flex items-center gap-1.5">
+               <i class="fa-sharp fa-light fa-grid-2" aria-hidden="true"></i>
+               <span>Categories</span>
+               <i class="fa-sharp max-md:group-aria-expanded:-rotate-90 fa-light fa-angle-down" aria-hidden="true"></i>
+            </button>
+            <div data-categories-popup class="w-full shadow-lg h-[calc(100vh-var(--nav-2-height)-var(--nav-1-height))] top-(--nav-2-height) text-base lg:text-sm max-lg:overflow-y-auto lg:h-[519px] bottom-0 flex-col [&_a]:py-2 bg-white z-[11] lg:max-w-fit lg:flex-row max-lg:left-0 border border-gray-300 hidden data-[visible]:flex absolute lg:items-start">
+               <div data-categories-tabs-list class="divide-y flex flex-col h-full lg:overflow-y-auto [&_a]:py-4 [&_a]:px-3 divide-gray-300">
+                  <a class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" aria-selected="true" href="#item1" title="AI, ML, and Data Science Tutorials">
+                     <span>AI, ML, and Data Science</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item2" title="Programming Languages Tutorials">
+                     <span>Programming Languages</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item3" title="Web Development Languages Tutorials">
+                     <span>Web Development Languages</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item4" title="DevOps Tutorials">
+                     <span>DevOps</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item5" title="Database Tutorials">
+                     <span>Databases</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item6" title="Computer Science Subject Tutorials">
+                     <span>Computer Science Subjects</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item7" title="Python Technologies Tutorials">
+                     <span>Python Technologies</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 transition-colors" href="#item8" title="Software Testing Tutorials">
+                     <span>Software Testing</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a aria-selected="false" class="w-full flex items-center lg:gap-10 hover:bg-gray-100 lg:border-b-transparent transition-colors" href="#item9" title="Cyber Security Tutorials">
+                     <span>Cyber Security</span>
+                     <i class="fa-sharp fa-light !h-5 lg:!h-4 ml-auto fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                  <a href="/top-categories.htm" class="sticky mt-auto bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center hover:bg-[#27902b] transition-colors" title="View All Tutorial Categories">
+                     <i class="fa-sharp fa-light fa-cubes" aria-hidden="true"></i> <span>All Categories</span>
+                  </a>
+               </div>
+               <div data-categories-panels
+                  class="has-[[data-visible]]:h-full [&_a:not(.sticky)]:hover:bg-gray-200 [&_a]:transition-colors lg:[&_a:not(.sticky)]:border-l [&_a]:border-gray-300 lg:bg-gray-100 [&>div]:grow [&>div>div]:grow [&>div]:flex lg:overflow-y-auto [&>div]:flex-col lg:h-full flex flex-col lg:min-w-[350px]">
+                  <div id="item1" role="tabpanel" aria-labelledby="tab-item1">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/artificial_intelligence/index.htm" title="Learn Artificial Intelligence">Artificial Intelligence</a>
+                        <a href="/machine_learning/index.htm" title="Learn Machine Learning">Machine Learning</a>
+                        <a href="/machine_learning_with_python/index.htm" title="Learn Machine Learning with Python">ML With Python</a>
+                        <a href="/data_science/index.htm" title="Learn Data Science">Data Science</a>
+                        <a href="/statistics/index.htm" title="Learn Statistics">Statistics</a>
+                        <a href="/natural_language_processing/index.htm" title="Learn Natural Language Processing">NLP</a>
+                        <a href="/artificial_neural_network/index.htm" title="Learn Neural Networks">Neural Networks</a>
+                        <a href="/tensorflow/index.htm" title="Learn TensorFlow">TensorFlow</a>
+                        <a href="/pytorch/index.htm" title="Learn PyTorch">PyTorch</a>
+                        <a href="/matplotlib/index.htm" title="Learn Matplotlib">Matplotlib</a>
+                        <a href="/numpy/index.htm" title="Learn NumPy">NumPy</a>
+                        <a href="/python_pandas/index.htm" title="Learn Pandas">Pandas</a>
+                        <a href="/scipy/index.htm" title="Learn SciPy">SciPy</a>
+                        <a href="/big_data_analytics/index.htm" title="Learn Big Data Analytics">Big Data Analytics</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors" href="/machine_learning_tutorials.htm" title="View All Machine Learning Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item2" role="tabpanel" aria-labelledby="tab-item2">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/python/index.htm" title="Learn Python Programming">Learn Python</a>
+                        <a href="/java/index.htm" title="Learn Java Programming">Learn Java</a>
+                        <a href="/cplusplus/index.htm" title="Learn C++ Programming">Learn C++</a>
+                        <a href="/cprogramming/index.htm" title="Learn C Programming">Learn C</a>
+                        <a href="/php/index.htm" title="Learn PHP Programming">Learn PHP</a>
+                        <a href="/go/index.htm" title="Learn Go Programming">Learn Go</a>
+                        <a href="/kotlin/index.htm" title="Learn Kotlin Programming">Learn Kotlin</a>
+                        <a href="/r/index.htm" title="Learn R Programming">Learn R</a>
+                        <a href="/asp.net/index.htm" title="Learn ASP.Net">Learn ASP.Net</a>
+                        <a href="/csharp/index.htm" title="Learn C# Programming">Learn C#.Net</a>
+                        <a href="/vb.net/index.htm" title="Learn VB.Net">Learn VB.Net</a>
+                        <a href="/scala/index.htm" title="Learn Scala Programming">Learn Scala</a>
+                        <a href="/swift/index.htm" title="Learn Swift Programming">Learn Swift</a>
+                        <a href="/perl/index.htm" title="Learn Perl Programming">Learn Perl</a>
+                        <a href="/ruby/index.htm" title="Learn Ruby Programming">Learn Ruby</a>
+                        <a href="/rust/index.htm" title="Learn Rust Programming">Learn Rust</a>
+                        <a href="/lua/index.htm" title="Learn Lua Programming">Learn Lua</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors"
+                           href="/computer_programming_tutorials.htm" title="View All Programming Language Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item3" role="tabpanel" aria-labelledby="tab-item3">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/html/index.htm" title="Learn HTML">Learn HTML</a>
+                        <a href="/css/index.htm" title="Learn CSS">Learn CSS</a>
+                        <a href="/javascript/index.htm" title="Learn JavaScript">Learn JavaScript</a>
+                        <a href="/jquery/index.htm" title="Learn jQuery">Learn jQuery</a>
+                        <a href="/reactjs/index.htm" title="Learn React.js">ReactJs</a>
+                        <a href="/nodejs/index.htm" title="Learn Node.js">NodeJs</a>
+                        <a href="/wordpress/index.htm" title="Learn WordPress">Wordpress</a>
+                        <a href="/angularjs/index.htm" title="Learn Angular.js">AngularJs</a>
+                        <a href="/php/index.htm" title="Learn PHP">Learn PHP</a>
+                        <a href="/django/index.htm" title="Learn Django">Django</a>
+                        <a href="/json/index.htm" title="Learn JSON">Learn JSON</a>
+                        <a href="/codeigniter/index.htm" title="Learn CodeIgniter">Codeigniter</a>
+                        <a href="/typescript/index.htm" title="Learn TypeScript">TypeScript</a>
+                        <a href="/ajax/index.htm" title="Learn AJAX">Learn Ajax</a>
+                        <a href="/bootstrap/index.htm" title="Learn Bootstrap">Bootstrap</a>
+                        <a href="/sass/index.htm" title="Learn Sass">Learn Sass</a>
+                        <a href="/appml/index.htm" title="Learn AppML">AppML</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors"
+                           href="/web_development_tutorials.htm" title="View All Web Development Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item4" role="tabpanel" aria-labelledby="tab-item4">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/git/index.htm" title="Learn Git">GIT</a>
+                        <a href="/amazon_web_services/index.htm" title="Learn Amazon Web Services">AWS</a>
+                        <a href="/docker/index.htm" title="Learn Docker">Docker</a>
+                        <a href="/kubernetes/index.htm" title="Learn Kubernetes">Kubernetes</a>
+                        <a href="/microsoft_azure/index.htm" title="Learn Microsoft Azure">Azure</a>
+                        <a href="/gitlab/index.htm" title="Learn GitLab">Gitlab</a>
+                        <a href="/jira/index.htm" title="Learn Jira">Jira</a>
+                        <a href="/gerrit/index.htm" title="Learn Gerrit">Gerrit</a>
+                        <a href="/ansible/index.htm" title="Learn Ansible">Ansible</a>
+                        <a href="/bugzilla/index.htm" title="Learn Bugzilla">Bugzilla</a>
+                        <a href="/chef/index.htm" title="Learn Chef">Chef</a>
+                        <a href="/saltstack/index.htm" title="Learn SaltStack">SaltStack</a>
+                        <a href="/openshift/index.htm" title="Learn OpenShift">OpenShift</a>
+                        <a href="/puppet/index.htm" title="Learn Puppet">Puppet</a>
+                        <a href="/unix/index.htm" title="Learn UNIX">UNIX</a>
+                        <a href="/linux_admin/index.htm" title="Learn Linux Administration">Linux Admin</a>
+                        <a href="/ubuntu/index.htm" title="Learn Ubuntu">Ubuntu</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors"
+                           href="/devops_tutorials.htm" title="View All DevOps Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item5" role="tabpanel" aria-labelledby="tab-item5">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/dbms/index.htm" title="Learn Database Management Systems">DBMS</a>
+                        <a href="/sql/index.htm" title="Learn SQL">SQL</a>
+                        <a href="/plsql/index.htm" title="Learn PL/SQL">PL/SQL</a>
+                        <a href="/mysql/index.htm" title="Learn MySQL">MySQL</a>
+                        <a href="/tinydb/index.htm" title="Learn TinyDB">TinyDB</a>
+                        <a href="/ms_sql_server/index.htm" title="Learn Microsoft SQL Server">SQL Server</a>
+                        <a href="/mongodb/index.htm" title="Learn MongoDB">MongoDB</a>
+                        <a href="/postgresql/index.htm" title="Learn PostgreSQL">PostgreSQL</a>
+                        <a href="/sqlite/index.htm" title="Learn SQLite">SQLite</a>
+                        <a href="/redis/index.htm" title="Learn Redis">Redis</a>
+                        <a href="/phpmyadmin/index.htm" title="Learn PHPMyAdmin">PHP MyAdmin</a>
+                        <a href="/mariadb/index.htm" title="Learn MariaDB">MariaDB</a>
+                        <a href="/couchdb/index.htm" title="Learn CouchDB">CouchDB</a>
+                        <a href="/db2/index.htm" title="Learn DB2">DB2</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors"
+                           href="/database_tutorials.htm" title="View All Database Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item6" role="tabpanel" aria-labelledby="tab-item6">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/computer_fundamentals/index.htm" title="Learn Computer Fundamentals">Computer Fundamentals</a>
+                        <a href="/operating_system/index.htm" title="Learn Operating System Concepts">Operating System</a>
+                        <a href="/dbms/index.htm" title="Learn Database Management Systems">DBMS</a>
+                        <a href="/data_structures_algorithms/index.htm" title="Learn Data Structures and Algorithms">DSA</a>
+                        <a href="/data_communication_computer_network/index.htm" title="Learn Computer Networks">Computer Networks</a>
+                        <a href="/software_engineering/index.htm" title="Learn Software Engineering">Software Engineering</a>
+                        <a href="/computer_graphics/index.htm" title="Learn Computer Graphics">Computer Graphics</a>
+                        <a href="/data_mining/index.htm" title="Learn Data Mining">Data Mining</a>
+                        <a href="/digital_marketing/index.htm" title="Learn Digital Marketing">Digital Marketing</a>
+                        <a href="/seo/index.htm" title="Learn Search Engine Optimization">SEO</a>
+                        <a href="/digital_circuits/index.htm" title="Learn Digital Circuits">Digital Circuits</a>
+                        <a href="/discrete_mathematics/index.htm" title="Learn Discrete Mathematics">Discrete Mathematics</a>
+                        <a href="/cryptography/index.htm" title="Learn Cryptography">Cryptography</a>
+                        <a href="/cloud_computing/index.htm" title="Learn Cloud Computing">Cloud Computing</a>
+                        <a href="/compiler_design/index.htm" title="Learn Compiler Design">Compiler Design</a>
+                        <a href="/embedded_systems/index.htm" title="Learn Embedded Systems">Embedded Systems</a>
+                        <a href="/microprocessor/index.htm" title="Learn Microprocessors">Microprocessors</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors"
+                           href="/computer_science_tutorials.htm" title="View All Computer Science Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item7" role="tabpanel" aria-labelledby="tab-item7">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/python/index.htm" title="Learn Python Programming">Python</a>
+                        <a href="/numpy/index.htm" title="Learn NumPy for Data Analysis">NumPy</a>
+                        <a href="/python_pandas/index.htm" title="Learn Pandas for Data Analysis">Pandas</a>
+                        <a href="/matplotlib/index.htm" title="Learn Matplotlib for Data Visualization">Matplotlib</a>
+                        <a href="/django/index.htm" title="Learn Django Web Framework">Django</a>
+                        <a href="/pyqt/index.htm" title="Learn PyQt for GUI Development">PyQt</a>
+                        <a href="/pycharm/index.htm" title="Learn PyCharm IDE">PyCharm</a>
+                        <a href="/python_pillow/index.htm" title="Learn Pillow for Image Processing">Pillow</a>
+                        <a href="/opencv/index.htm" title="Learn OpenCV for Computer Vision">OpenCV</a>
+                        <a href="/seaborn/index.htm" title="Learn Seaborn for Statistical Data Visualization">Seaborn</a>
+                        <a href="/machine_learning_with_python/index.htm" title="Learn Machine Learning with Python">ML with Python</a>
+                        <a href="/scipy/index.htm" title="Learn SciPy for Scientific Computing">SciPy</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors" href="/python_technologies_tutorials.htm" title="View All Python Technology Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item8" role="tabpanel" aria-labelledby="tab-item8">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/software_testing/index.htm" title="Learn Software Testing Fundamentals">Software Testing</a>
+                        <a href="/jira/index.htm" title="Learn Jira for Project Management">Jira</a>
+                        <a href="/selenium/index.htm" title="Learn Selenium for Test Automation">Selenium</a>
+                        <a href="/testrail/index.htm" title="Learn TestRail for Test Case Management">TestRail</a>
+                        <a href="/postman/index.htm" title="Learn Postman for API Testing">Postman</a>
+                        <a href="/cucumber/index.htm" title="Learn Cucumber for BDD Testing">Cucumber</a>
+                        <a href="/cypress/index.htm" title="Learn Cypress for Front-End Testing">Cypress</a>
+                        <a href="/watir/index.htm" title="Learn Watir for Ruby-Based Testing">Watir</a>
+                        <a href="/agile/index.htm" title="Learn Agile Methodology">Agile</a>
+                        <a href="/jmeter/index.htm" title="Learn JMeter for Performance Testing">jMeter</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors" href="/software_testing_tutorials.htm" title="View All Software Testing Tutorials">See all</a>
+                     </div>
+                  </div>
+                  <div id="item9" role="tabpanel" aria-labelledby="tab-item9">
+                     <button class="lg:hidden m-3 bg-gray-200 px-4 w-fit flex items-center gap-2 pr-4 py-1.5">
+                        <i class="fa-sharp fa-light fa-angle-left !h-4" aria-hidden="true"></i> <span>Back</span>
+                     </button>
+                     <div class="flex flex-col [&_a]:py-4 [&_a]:px-3 max-lg:divide-y divide-gray-300">
+                        <a href="/blockchain/index.htm" title="Learn Blockchain Technology">Blockchain</a>
+                        <a href="/information_security_cyber_law/index.htm" title="Learn Information Security and Cyber Law">Information Security</a>
+                        <a href="/computer_security/index.htm" title="Learn Computer Security Fundamentals">Computer Security</a>
+                        <a href="/internet_security/index.htm" title="Learn Internet Security Best Practices">Internet Security</a>
+                        <a href="/network_security/index.htm" title="Learn Network Security">Network Security</a>
+                        <a href="/wireless_security/index.htm" title="Learn Wireless Security">Wireless Security</a>
+                        <a class="sticky bottom-0 bg-[#2c9d30] !py-2.5 text-white text-center mt-auto hover:bg-[#27902b] transition-colors" href="/cyber_security_tutorials.htm" title="View All Cyber Security Tutorials">See all</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <button aria-expanded="false" data-nav-toggle class="lg:hidden group flex items-center gap-1.5"
+            aria-label="Toggle menu">
+            <svg class="group-aria-expanded:hidden size-7" xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg class="group-aria-expanded:block hidden size-7" xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+         </button>
+         <div data-nav
+            class="w-full max-lg:shadow-lg top-(--nav-2-height) max-lg:flex-col [&_a]:py-2 max-lg:bg-white z-[2] left-0 max-lg:p-4 max-lg:border border-gray-300 max-lg:hidden max-lg:data-[visible]:flex max-lg:absolute flex lg:items-center lg:gap-6">
+            <div class="relative w-full max-w-[600px] max-lg:mb-2">
+               <input data-result="search-results" id="search-strings" name="key"
+                  class="border-black w-full py-2 border focus:border-[#2c9d30] placeholder:text-black/90 text-sm focus:outline-hidden px-3"
+                  placeholder="Search tutorials, courses and ebooks..." />
+               <div class="search-box search-box-inn right-0" id="search-results"></div>
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="absolute right-3 inset-y-0 my-auto size-5 opacity-50">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+               </svg>
+            </div>
+            <a href="/tutorialslibrary.htm" class="lg:ml-auto hover:underline    ">Library</a>
+            <a href="https://market.tutorialspoint.com/index.asp" class="hover:underline">Courses</a>
+            <a href="https://market.tutorialspoint.com/latest/certifications" class="hover:underline">Certifications</a>
+            <a href="https://www.tutorialspoint.com/market/login.jsp"
+               class="bg-[#2c9d30] py-2 px-4 text-white hover:opacity-80 max-lg:mt-1 transition-opacity font-semibold" id="nav__signup-link">Login</a>
+         </div>
+      </div>
+   </nav>
+   <nav class="bg-[#031926] text-sm text-white relative flex items-center h-(--nav-3-height) [&_a]:hover:bg-[#2c9d30]">
+      <div class="w-(--container) px-4 mx-auto absolute h-full pointer-events-none inset-x-0">
+         <div class="absolute inset-y-0 left-0 h-full w-10 bg-gradient-to-r from-[#031926] to-transparent"
+            aria-hidden="true">
+         </div>
+      </div>
+      <button class="w-[50px] !h-[30px] flex items-center cursor-pointer" data-scroll-prev>
+         <i class="fa-sharp fa-light !h-4 z-[2] ml-3 lg:ml-6 fa-angle-left"></i>
+      </button>
+      <div data-scroll-container class="w-(--container) px-4 mx-auto flex items-center overflow-x-auto scrollbar-hidden whitespace-nowrap h-full [&_a]:h-full [&_a]:flex [&_a]:items-center [&_a]:px-3.5 lg:[&_a]:px-5">
+         <a href="/sql/index.htm" title="SQL Tutorial">SQL</a>
+         <a href="/html/index.htm" title="HTML Tutorial">HTML</a>
+         <a href="/css/index.htm" title="CSS Tutorial">CSS</a>
+         <a href="/javascript/index.htm" title="JavaScript Tutorial">Javascript</a>
+         <a href="/python/index.htm" title="Python Tutorial">Python</a>
+         <a href="/java/index.htm" title="Java Tutorial">Java</a>
+         <a href="/cprogramming/index.htm" title="C Tutorial">C</a>
+         <a href="/cplusplus/index.htm" title="C++ Tutorial">C++</a>
+         <a href="/php/index.htm" title="PHP Tutorial">PHP</a>
+         <a href="/scala/index.htm" title="Scala Tutorial">Scala</a>
+         <a href="/csharp/index.htm" title="C# Tutorial">C#</a>
+         <a href="/tailwind_css/index.htm" title="Tailwind CSS Tutorial">Tailwind CSS</a>
+         <a href="/nodejs/index.htm" title="Node.js Tutorial">Node.js</a>
+         <a href="/mysql/index.htm" title="MySQL">MySQL</a>
+         <a href="/mongodb/index.htm" title="MongoDB Tutorial">MongoDB</a>
+         <a href="/plsql/index.htm" title="PL/SQL Tutorial">PL/SQL</a>
+         <a href="/swift/index.htm" title="Swift Tutorial">Swift</a>
+         <a href="/bootstrap/index.htm" title="Bootstrap Tutorial">Bootstrap</a>
+         <a href="/r/index.htm" title="R Programming">R</a>
+         <a href="/machine_learning/index.htm" title="Machine Learning">Machine Learning</a>
+         <a href="/blockchain/index.htm" title="Blockchain Tutorial">Blockchain</a>
+         <a href="/angular4/index.htm" title="Angular Tutorial">Angular</a>
+         <a href="/react_native/index.htm" title="React Native Tutorial">React Native</a>
+         <a href="/computer_fundamentals/index.htm" title="Computer Fundamentals Tutorial">Computer Fundamentals </a>
+         <a href="/compiler_design/index.htm" title="Compiler Design Tutorial">Compiler Design</a>
+         <a href="/operating_system/index.htm" title="Operating System Tutorial">Operating System</a>
+         <a href="/data_structures_algorithms/index.htm" title="Data Structure and Algorithms Tutorial">Data Structure and Algorithms </a>
+         <a href="/data_communication_computer_network/index.htm" title="Computer Network Tutorial"> Computer Network</a>
+         <a href="/dbms/index.htm" title="DBMS Tutorial">DBMS</a>
+         <a href="/excel/index.htm" title="Excel Tutorial">Excel</a>
+      </div>
+      <button class="cursor-pointer w-[50px]  h-[30px] flex items-center" data-scroll-next>
+         <i class="fa-sharp fa-light !h-4 z-[2] mr-3 lg:mr-6 fa-angle-right"></i>
+      </button>
+      <div class="w-(--container) px-4 mx-auto absolute h-full pointer-events-none inset-x-0">
+         <div class="absolute inset-y-0 right-0 h-full w-10 bg-gradient-to-l from-[#031926] to-transparent" aria-hidden="true">
+         </div>
+      </div>
+   </nav>
+<main class="bg-light" style="overflow: unset;">
+<div class="container-fluid">
+<div class="row">
+<div class="tutorial-toc">
+<div class="toc-nav">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+"HTML-CSS": {
+linebreaks: { automatic: true, width: "container" }          
+}              
+});
+</script>
+<!--<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+<div class="mini-logo">
+<img src="/python/images/python-mini-logo.jpg?v1" alt="Python Tutorial">
+</div>
+<ul class="toc chapters">
+<li><a href="/python/index.htm">Python - Home</a></li>
+<li><a href="/python/python_overview.htm">Python - Overview</a></li>
+<li><a href="/python/python_history.htm">Python - History</a></li>
+<li><a href="/python/python_features.htm">Python - Features</a></li>
+<li><a href="/python/python_vs_cpp.htm">Python vs C++</a></li>
+<li><a href="/python/python_hello_world.htm">Python - Hello World Program</a></li>
+<li><a href="/python/python_application_areas.htm">Python - Application Areas</a></li>
+<li><a href="/python/python_interpreter.htm">Python - Interpreter</a></li>
+<li><a href="/python/python_environment.htm">Python - Environment Setup</a></li>
+<li><a href="/python/python_virtual_environment.htm">Python - Virtual Environment</a></li>
+<li><a href="/python/python_basic_syntax.htm">Python - Basic Syntax</a></li>
+<li><a href="/python/python_variables.htm">Python - Variables</a></li>
+<li><a href="/python/python_data_types.htm">Python - Data Types</a></li>
+<li><a href="/python/python_type_casting.htm">Python - Type Casting</a></li>
+<li><a href="/python/python_unicode_system.htm">Python - Unicode System</a></li>
+<li><a href="/python/python_literals.htm">Python - Literals</a></li>
+<li><a href="/python/python_operators.htm">Python - Operators</a></li>
+<li><a href="/python/python_arithmetic_operators.htm">Python - Arithmetic Operators</a></li>
+<li><a href="/python/python_comparison_operators.htm">Python - Comparison Operators</a></li>
+<li><a href="/python/python_assignment_operators.htm">Python - Assignment Operators</a></li>
+<li><a href="/python/python_logical_operators.htm">Python - Logical Operators</a></li>
+<li><a href="/python/python_bitwise_operators.htm">Python - Bitwise Operators</a></li>
+<li><a href="/python/python_membership_operators.htm">Python - Membership Operators</a></li>
+<li><a href="/python/python_identity_operators.htm">Python - Identity Operators</a></li>
+<li><a href="/python/python_operator_precedence.htm">Python - Operator Precedence</a></li>
+<li><a href="/python/python_comments.htm">Python - Comments</a></li>
+<li><a href="/python/python_user_input.htm">Python - User Input</a></li>
+<li><a href="/python/python_numbers.htm">Python - Numbers</a></li>
+<li><a href="/python/python_booleans.htm">Python - Booleans</a></li>
+<li><a href="/python/python_control_flow.htm">Python - Control Flow</a></li>
+<li><a href="/python/python_decision_making.htm">Python - Decision Making</a></li>
+<li><a href="/python/python_if_statement.htm">Python - If Statement</a></li>
+<li><a href="/python/python_if_else.htm">Python - If else</a></li>
+<li><a href="/python/nested_if_statements_in_python.htm">Python - Nested If</a></li>
+<li><a href="/python/python_matchcase_statement.htm">Python - Match-Case Statement</a></li>
+<li><a href="/python/python_loops.htm">Python - Loops</a></li>
+<li><a href="/python/python_for_loops.htm">Python - for Loops</a></li>
+<li><a href="/python/python_forelse_loops.htm">Python - for-else Loops</a></li>
+<li><a href="/python/python_while_loops.htm">Python - While Loops</a></li>
+<li><a href="/python/python_break_statement.htm">Python - break Statement</a></li>
+<li><a href="/python/python_continue_statement.htm">Python - continue Statement</a></li>
+<li><a href="/python/python_pass_statement.htm">Python - pass Statement</a></li>
+<li><a href="/python/python_nested_loops.htm">Python - Nested Loops</a></li>
+<li class="heading">Python Functions &amp; Modules</li>
+<li><a href="/python/python_functions.htm">Python - Functions</a></li>
+<li><a href="/python/python_default_arguments.htm">Python - Default Arguments</a></li>
+<li><a href="/python/python_keyword_arguments.htm">Python - Keyword Arguments</a></li>
+<li><a href="/python/python_keywordonly_arguments.htm">Python - Keyword-Only Arguments</a></li>
+<li><a href="/python/python_positional_arguments.htm">Python - Positional Arguments</a></li>
+<li><a href="/python/python_positional_only_arguments.htm">Python - Positional-Only Arguments</a></li>
+<li><a href="/python/python_arbitrary_arguments.htm">Python - Arbitrary Arguments</a></li>
+<li><a href="/python/python_variables_scope.htm">Python - Variables Scope</a></li>
+<li><a href="/python/python_function_annotations.htm">Python - Function Annotations</a></li>
+<li><a href="/python/python_modules.htm">Python - Modules</a></li>
+<li><a href="/python/python_built_in_functions.htm">Python - Built in Functions</a></li>
+<li class="heading">Python Strings</li>
+<li><a href="/python/python_strings.htm">Python - Strings</a></li>
+<li><a href="/python/python_slicing_strings.htm">Python - Slicing Strings</a></li>
+<li><a href="/python/python_modify_strings.htm">Python - Modify Strings</a></li>
+<li><a href="/python/python_string_concatenation.htm">Python - String Concatenation</a></li>
+<li><a href="/python/python_string_formatting.htm">Python - String Formatting</a></li>
+<li><a href="/python/python_escape_characters.htm">Python - Escape Characters</a></li>
+<li><a href="/python/python_string_methods.htm">Python - String Methods</a></li>
+<li><a href="/python/python_string_exercises.htm">Python - String Exercises</a></li>
+<li class="heading">Python Lists</li>
+<li><a href="/python/python_lists.htm">Python - Lists</a></li>
+<li><a href="/python/python_access_list_items.htm">Python - Access List Items</a></li>
+<li><a href="/python/python_change_list_items.htm">Python - Change List Items</a></li>
+<li><a href="/python/python_add_list_items.htm">Python - Add List Items</a></li>
+<li><a href="/python/python_remove_list_items.htm">Python - Remove List Items</a></li>
+<li><a href="/python/python_loop_lists.htm">Python - Loop Lists</a></li>
+<li><a href="/python/python_list_comprehension.htm">Python - List Comprehension</a></li>
+<li><a href="/python/python_sort_lists.htm">Python - Sort Lists</a></li>
+<li><a href="/python/python_copy_lists.htm">Python - Copy Lists</a></li>
+<li><a href="/python/python_join_lists.htm">Python - Join Lists</a></li>
+<li><a href="/python/python_list_methods.htm">Python - List Methods</a></li>
+<li><a href="/python/python_list_exercises.htm">Python - List Exercises</a></li>
+<li class="heading">Python Tuples</li>
+<li><a href="/python/python_tuples.htm">Python - Tuples</a></li>
+<li><a href="/python/python_access_tuple_items.htm">Python - Access Tuple Items</a></li>
+<li><a href="/python/python_update_tuples.htm">Python - Update Tuples</a></li>
+<li><a href="/python/python_unpack_tuples.htm">Python - Unpack Tuples</a></li>
+<li><a href="/python/python_loop_tuples.htm">Python - Loop Tuples</a></li>
+<li><a href="/python/python_join_tuples.htm">Python - Join Tuples</a></li>
+<li><a href="/python/python_tuple_methods.htm">Python - Tuple Methods</a></li>
+<li><a href="/python/python_tuple_exercises.htm">Python - Tuple Exercises</a></li>
+<li class="heading">Python Sets</li>
+<li><a href="/python/python_sets.htm">Python - Sets</a></li>
+<li><a href="/python/python_access_set_items.htm">Python - Access Set Items</a></li>
+<li><a href="/python/python_add_set_items.htm">Python - Add Set Items</a></li>
+<li><a href="/python/python_remove_set_items.htm">Python - Remove Set Items</a></li>
+<li><a href="/python/python_loop_sets.htm">Python - Loop Sets</a></li>
+<li><a href="/python/python_join_sets.htm">Python - Join Sets</a></li>
+<li><a href="/python/python_copy_sets.htm">Python - Copy Sets</a></li>
+<li><a href="/python/python_set_operators.htm">Python - Set Operators</a></li>
+<li><a href="/python/python_set_methods.htm">Python - Set Methods</a></li>
+<li><a href="/python/python_set_exercises.htm">Python - Set Exercises</a></li>
+<li class="heading">Python Dictionaries</li>
+<li><a href="/python/python_dictionary.htm">Python - Dictionaries</a></li>
+<li><a href="/python/python_access_dictionary_items.htm">Python - Access Dictionary Items</a></li>
+<li><a href="/python/python_change_dictionary_items.htm">Python - Change Dictionary Items</a></li>
+<li><a href="/python/python_add_dictionary_items.htm">Python - Add Dictionary Items</a></li>
+<li><a href="/python/python_remove_dictionary_items.htm">Python - Remove Dictionary Items</a></li>
+<li><a href="/python/python_dictionary_view_objects.htm">Python - Dictionary View Objects</a></li>
+<li><a href="/python/python_loop_dictionaries.htm">Python - Loop Dictionaries</a></li>
+<li><a href="/python/python_copy_dictionaries.htm">Python - Copy Dictionaries</a></li>
+<li><a href="/python/python_nested_dictionaries.htm">Python - Nested Dictionaries</a></li>
+<li><a href="/python/python_dictionary_methods.htm">Python - Dictionary Methods</a></li>
+<li><a href="/python/python_dictionary_exercises.htm">Python - Dictionary Exercises</a></li>
+<li class="heading">Python Arrays</li>
+<li><a href="/python/python_arrays.htm">Python - Arrays</a></li>
+<li><a href="/python/python_access_array_items.htm">Python - Access Array Items</a></li>
+<li><a href="/python/python_add_array_items.htm">Python - Add Array Items</a></li>
+<li><a href="/python/python_remove_array_items.htm">Python - Remove Array Items</a></li>
+<li><a href="/python/python_loop_arrays.htm">Python - Loop Arrays</a></li>
+<li><a href="/python/python_copy_arrays.htm">Python - Copy Arrays</a></li>
+<li><a href="/python/python_reverse_arrays.htm">Python - Reverse Arrays</a></li>
+<li><a href="/python/python_sort_arrays.htm">Python - Sort Arrays</a></li>
+<li><a href="/python/python_join_arrays.htm">Python - Join Arrays</a></li>
+<li><a href="/python/python_array_methods.htm">Python - Array Methods</a></li>
+<li><a href="/python/python_array_exercises.htm">Python - Array Exercises</a></li>
+<li class="heading">Python File Handling</li>
+<li><a href="/python/python_file_handling.htm">Python - File Handling</a></li>
+<li><a href="/python/python_write_to_file.htm">Python - Write to File</a></li>
+<li><a href="/python/python_read_files.htm">Python - Read Files</a></li>
+<li><a href="/python/python_renaming_and_delete_files.htm">Python - Renaming and Deleting Files</a></li>
+<li><a href="/python/python_directories.htm">Python - Directories</a></li>
+<li><a href="/python/python_file_methods.htm">Python - File Methods</a></li>
+<li><a href="/python/os_file_methods.htm">Python - OS File/Directory Methods</a></li>
+<li><a href="/python/os_path_methods.htm">Python - OS Path Methods</a></li>
+<li class="heading">Object Oriented Programming</li>
+<li><a href="/python/python_oops_concepts.htm">Python - OOPs Concepts</a></li>
+<li><a href="/python/python_classes_objects.htm">Python - Classes &amp; Objects</a></li>
+<li><a href="/python/python_class_attributes.htm">Python - Class Attributes</a></li>
+<li><a href="/python/python_class_methods.htm">Python - Class Methods</a></li>
+<li><a href="/python/python_static_methods.htm">Python - Static Methods</a></li>
+<li><a href="/python/python_constructors.htm">Python - Constructors</a></li>
+<li><a href="/python/python_access_modifiers.htm">Python - Access Modifiers</a></li>
+<li><a href="/python/python_inheritance.htm">Python - Inheritance</a></li>
+<li><a href="/python/python_polymorphism.htm">Python - Polymorphism</a></li>
+<li><a href="/python/python_method_overriding.htm">Python - Method Overriding</a></li>
+<li><a href="/python/python_method_overloading.htm">Python - Method Overloading</a></li>
+<li><a href="/python/python_dynamic_binding.htm">Python - Dynamic Binding</a></li>
+<li><a href="/python/python_dynamic_typing.htm">Python - Dynamic Typing</a></li>
+<li><a href="/python/python_abstraction.htm">Python - Abstraction</a></li>
+<li><a href="/python/python_encapsulation.htm">Python - Encapsulation</a></li>
+<li><a href="/python/python_interfaces.htm">Python - Interfaces</a></li>
+<li><a href="/python/python_packages.htm">Python - Packages</a></li>
+<li><a href="/python/python_inner_classes.htm">Python - Inner Classes</a></li>
+<li><a href="/python/python_anonymous_class_and_objects.htm">Python - Anonymous Class and Objects</a></li>
+<li><a href="/python/python_singleton_class.htm">Python - Singleton Class</a></li>
+<li><a href="/python/python_wrapper_classes.htm">Python - Wrapper Classes</a></li>
+<li><a href="/python/python_enums.htm">Python - Enums</a></li>
+<li><a href="/python/python_reflection.htm">Python - Reflection</a></li>
+<li class="heading">Python Errors &amp; Exceptions</li>
+<li><a href="/python/python_syntax_errors.htm">Python - Syntax Errors</a></li>
+<li><a href="/python/python_exceptions.htm">Python - Exceptions</a></li>
+<li><a href="/python/python_tryexcept_block.htm">Python - try-except Block</a></li>
+<li><a href="/python/python_tryfinally_block.htm">Python - try-finally Block</a></li>
+<li><a href="/python/python_raising_exceptions.htm">Python - Raising Exceptions</a></li>
+<li><a href="/python/python_exception_chaining.htm">Python - Exception Chaining</a></li>
+<li><a href="/python/python_nested_try_block.htm">Python - Nested try Block</a></li>
+<li><a href="/python/python_userdefined_exception.htm">Python - User-defined Exception</a></li>
+<li><a href="/python/python_logging.htm">Python - Logging</a></li>
+<li><a href="/python/python_assertions.htm">Python - Assertions</a></li>
+<li><a href="/python/python_builtin_exceptions.htm">Python - Built-in Exceptions</a></li>
+<li class="heading">Python Multithreading</li>
+<li><a href="/python/python_multithreading.htm">Python - Multithreading</a></li>
+<li><a href="/python/python_thread_life_cycle.htm">Python - Thread Life Cycle</a></li>
+<li><a href="/python/python_creating_thread.htm">Python - Creating a Thread</a></li>
+<li><a href="/python/python_starting_thread.htm">Python - Starting a Thread</a></li>
+<li><a href="/python/python_joining_threads.htm">Python - Joining Threads</a></li>
+<li><a href="/python/python_naming_thread.htm">Python - Naming Thread</a></li>
+<li><a href="/python/python_thread_scheduling.htm">Python - Thread Scheduling</a></li>
+<li><a href="/python/python_thread_pools.htm">Python - Thread Pools</a></li> 
+<li><a href="/python/python_main_thread.htm">Python - Main Thread</a></li>
+<li><a href="/python/python_thread_priority.htm">Python - Thread Priority</a></li>
+<li><a href="/python/python_daemon_threads.htm">Python - Daemon Threads</a></li>
+<li><a href="/python/python_synchronizing_threads.htm">Python - Synchronizing Threads</a></li>
+<li class="heading">Python Synchronization</li>
+<li><a href="/python/python_interthread_communication.htm">Python - Inter-thread Communication</a></li>
+<li><a href="/python/python_thread_deadlock.htm">Python - Thread Deadlock</a></li>
+<li><a href="/python/python_interrupting_thread.htm">Python - Interrupting a Thread</a></li>
+<li class="heading">Python Networking</li>
+<li><a href="/python/python_network_programming.htm">Python - Networking</a></li>
+<li><a href="/python/python_socket_programming.htm">Python - Socket Programming</a></li>
+<li><a href="/python/python_url_processing.htm">Python - URL Processing</a></li>
+<li><a href="/python/python_generics.htm">Python - Generics</a></li>
+<li class="heading">Python Libraries</li>
+<li><a href="/numpy/index.htm">NumPy Tutorial</a></li>
+<li><a href="/python_pandas/index.htm">Pandas Tutorial</a></li>
+<li><a href="/scipy/index.htm">SciPy Tutorial</a></li>
+<li><a href="/matplotlib/index.htm">Matplotlib Tutorial</a></li>
+<li><a href="/django/index.htm">Django Tutorial</a></li>
+<li><a href="/opencv_python/index.htm">OpenCV Tutorial</a></li>
+<li class="heading">Python Miscellenous</li>
+<li><a href="/python/python_date_time.htm">Python - Date &amp; Time</a></li>
+<li><a href="/python/python_maths.htm">Python - Maths</a></li>
+<li><a href="/python/python_iterators.htm">Python - Iterators</a></li>
+<li><a href="/python/python_generators.htm">Python - Generators</a></li>
+<li><a href="/python/python_closures.htm">Python - Closures</a></li>
+<li><a href="/python/python_decorators.htm">Python - Decorators</a></li>
+<li><a href="/python/python_recursion.htm">Python - Recursion</a></li>
+<li><a href="/python/python_reg_expressions.htm">Python - Reg Expressions</a></li>
+<li><a href="/python/python_pip.htm">Python - PIP</a></li>
+<li><a href="/python/python_database_access.htm">Python - Database Access</a></li>
+<li><a href="/python/python_weak_references.htm">Python - Weak References</a></li>
+<li><a href="/python/python_serialization.htm">Python - Serialization</a></li>
+<li><a href="/python/python_templating.htm">Python - Templating</a></li>
+<li><a href="/python/python_output_formatting.htm">Python - Output Formatting</a></li>
+<li><a href="/python/python_performance_measurement.htm">Python - Performance Measurement</a></li>
+<li><a href="/python/python_data_compression.htm">Python - Data Compression</a></li>
+<li><a href="/python/python_cgi_programming.htm">Python - CGI Programming</a></li>
+<li><a href="/python/python_xml_processing.htm">Python - XML Processing</a></li>
+<li><a href="/python/python_gui_programming.htm">Python - GUI Programming</a></li>
+<li><a href="/python/python_command_line_arguments.htm">Python - Command-Line Arguments</a></li>
+<li><a href="/python/python_docstrings.htm">Python - Docstrings</a></li>
+<li><a href="/python/python_json.htm">Python - JSON</a></li>
+<li><a href="/python/python_sending_email.htm">Python - Sending Email</a></li>
+<li><a href="/python/python_further_extensions.htm">Python - Further Extensions</a></li>
+<li><a href="/python/python_tools_utilities.htm">Python - Tools/Utilities</a></li>
+<li><a href="/python/python_guis.htm">Python - GUIs</a></li>
+<li class="heading">Python Advanced Concepts</li>
+<li><a href="/python/python_abstract_base_classes.htm">Python - Abstract Base Classes</a></li>
+<li><a href="/python/python_custom_exceptions.htm">Python - Custom Exceptions</a></li>
+<li><a href="/python/python_higher_order_functions.htm">Python - Higher Order Functions</a></li>
+<li><a href="/python/python_object_internals.htm">Python - Object Internals</a></li>
+<li><a href="/python/python_memory_management.htm">Python - Memory Management</a></li>
+<li><a href="/python/python_metaclasses.htm">Python - Metaclasses</a></li>
+<li><a href="/python/python_metaprogramming_with_metaclasses.htm">Python - Metaprogramming with Metaclasses</a></li>
+<li><a href="/python/python_mocking_and_stubbing.htm">Python - Mocking and Stubbing</a></li>
+<li><a href="/python/python_monkey_patching.htm">Python - Monkey Patching</a></li>
+<li><a href="/python/python_signal_handling.htm">Python - Signal Handling</a></li>
+<li><a href="/python/python_type_hints.htm">Python - Type Hints</a></li>
+<li><a href="/python/python_automation_tutorial.htm">Python - Automation Tutorial</a></li>
+<li><a href="/python/python_humanize_package.htm">Python - Humanize Package</a></li>
+<li><a href="/python/python_context_managers.htm">Python - Context Managers</a></li>
+<li><a href="/python/python_coroutines.htm">Python - Coroutines</a></li>
+<li><a href="/python/python_descriptors.htm">Python - Descriptors</a></li>
+<li><a href="/python/python_diagnosing_and_fixing_memory_leaks.htm">Python - Diagnosing and Fixing Memory Leaks</a></li>
+<li><a href="/python/python_immutable_data_structures.htm">Python - Immutable Data Structures</a></li>
+<li class="heading">Python Useful Resources</li>
+<li><a href="/python/python_questions_answers.htm">Python - Questions &amp; Answers</a></li>
+<li><a href="/python/python_interview_questions.htm">Python - Interview Questions &amp; Answers</a></li>
+<li><a href="/python/python_online_quiz.htm">Python - Online Quiz</a></li>
+<li><a href="/python/python_quick_guide.htm">Python - Quick Guide</a></li>
+<li><a href="/python/python_reference.htm">Python - Reference</a></li>
+<li><a href="/python/python_cheatsheet.htm">Python - Cheatsheet</a></li>
+<li><a href="/python/python_projects_from_basic_to_advanced.htm">Python - Projects</a></li>
+<li><a href="/python/python_useful_resources.htm">Python - Useful Resources</a></li>
+<li><a href="/python/python_discussion.htm">Python - Discussion</a></li>
+<li><a href="/compilers/online-python-compiler.htm" target="_blank">Python Compiler</a></li>
+<li><a href="/compilers/online-numpy-compiler.htm" target="_blank">NumPy Compiler</a></li>
+<li><a href="/compilers/online-matplotlib-compiler.htm" target="_blank">Matplotlib Compiler</a></li>
+<li><a href="/compilers/online-scipy-compiler.htm" target="_blank">SciPy Compiler</a></li>
+<!--<li><a href="/python/python_programming_examples.htm">Python - Programming Examples</a></li>-->
+</ul>
+         <ul class="toc reading">
+            <li class="sreading">Selected Reading</li>
+            <li><a target="_blank" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+            <li><a target="_blank" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+            <li><a target="_blank" href="/questions_and_answers.htm">Questions and Answers</a></li>
+            <li><a target="_blank" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+            <li><a target="_blank" href="/resume-builder.htm">AI Based Resume Builder</a></li>
+            <li><a target="_blank" href="/assist.php">Personal AI Study Assistant</a></li>
+            <li><a target="_blank" href="/generate_coding_logic.php">Generate Coding Logic</a></li>
+            <li><a target="_blank" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+            <li><a target="_blank" href="/computer_glossary.htm">Computer Glossary</a></li>
+            <li><a target="_blank" href="/computer_whoiswho.htm">Who is Who</a></li>
+         </ul>
+      </div>
+      <div id="stickyparent" class="d-none d-sm-block">
+         <div style="height:0px;width:300px;" id="sticky-ad">
+          <!-- Placeholder for an advertisement -->
+         </div>
+      </div>
+</div>
+<!-- Tutorial ToC Ends Here -->
+<!-- Tutorial Content Starts Here -->
+<div class="tutorial-content" id="mainContent">
+<h1>Python vs C++</h1>
+<hr>
+<!-- TAGNAME: 728x90_Top -->
+   <div class="adp_top_ads" style="height:90px; overflow: hidden; display: block;width: 728px;">
+      <!-- TAGNAME: 728x90_Top -->
+      <div id='tutorialspointcom47470'>
+      </div>
+    </div>
+<hr>
+<div class="library-page-top-nav">
+   <div class="button button--neutral" id="btn_top_previous">
+   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M1.03117 8.48836C0.64065 8.09783 0.64065 7.46467 1.03117 7.07414L7.39514 0.710183C7.78566 0.319658 8.41883 0.319658 8.80935 0.710183C9.19987 1.10071 9.19987 1.73387 8.80935 2.1244L3.15249 7.78125L8.80935 13.4381C9.19987 13.8286 9.19987 14.4618 8.80935 14.8523C8.41882 15.2428 7.78566 15.2428 7.39513 14.8523L1.03117 8.48836ZM3.12109 8.78125L1.73828 8.78125L1.73828 6.78125L3.12109 6.78125L3.12109 8.78125Z" fill="black" /></svg>
+   <a href="/python/python_features.htm">
+      Previous
+   </a>
+   </div>
+   <div class="flex-group">
+      <a href="/python/quiz_on_python_vs_cpp.htm" target="_blank" alt="Practice Quiz on "><span class="button button--neutral">Quiz</span></a>
+      <div class="button " id="btn_top_next">
+   <a href="/python/python_hello_world.htm">
+    Next
+   </a>
+   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none"><path
+   d="M8.87117 8.48836C9.26169 8.09783 9.26169 7.46467 8.87117 7.07414L2.50721 0.710183C2.11668 0.319658 1.48352 0.319658 1.09299 0.710183C0.70247 1.10071 0.70247 1.73387 1.09299 2.1244L6.74985 7.78125L1.093 13.4381C0.702471 13.8286 0.702471 14.4618 1.093 14.8523C1.48352 15.2428 2.11668 15.2428 2.50721 14.8523L8.87117 8.48836ZM6.78125 8.78125L8.16406 8.78125L8.16406 6.78125L6.78125 6.78125L6.78125 8.78125Z" fill="white" /></svg>
+   </div>
+   </div>
+</div>
+
+<div class="clearer"></div>
+<p>Python is a general-purpose, high-level programming language. Python is used for web development, Machine Learning, and other cutting-edge software development. Python is suitable for both new and seasoned C++ and Java programmers. <b>Guido Van Rossam</b> has created Python in 1989 at Netherlands' National Research Institute. Python was released in 1991.</p>
+<p><a href="/cplusplus/index.htm" target="_blank">C++</a> is a middle-level, case-sensitive, object-oriented programming language. Bjarne Stroustrup created C++ at Bell Labs. C++ is a platform-independent programming language that works on Windows, Mac OS, and Linux. C++ is near to hardware, allowing low-level programming. This provides a developer control over memory, improved performance, and dependable software.</p>
+<p>Read through this article to get an overview of C++ and Python and how these two programming languages are different from each other.</p>
+<h2>What is Python?</h2>
+<p>Python is currently one of the most widely used programming languages. It is an interpreted programming language that operates at a high level. When compared to other languages, the learning curve for Python is much lower, and it is also quite straightforward to use.</p>
+<p>Python is the programming language of choice for professionals working in fields such as <a href="/artificial_intelligence/index.htm" target="_blank">Artificial Intelligence</a>, <a href="/machine_learning_with_python/index.htm" target="_blank">Machine Learning (ML)</a>, <a href="/python_data_science/index.htm" target="_blank">Data Science</a>, the <a href="/internet_of_things/index.htm" target="_blank">Internet of Things (IoT)</a>, etc., because it excels at both scripting applications and as standalone programmes.</p>
+<p>In addition to this, Python is the language of choice because it is easy to learn. Because of its excellent syntax and readability, the amount of money spent on maintenance is decreased. The modularity of the programme and the reusability of the code both contribute to its support for a variety of packages and modules.</p>
+<p>Using Python, we can perform </p>
+<ul class="list">
+<li><p>Web development</p></li>
+<li><p>Data analysis and machine learning</p></li>
+<li><p>Automation and scripting</p></li>
+<li><p>Software testing and many more</p></li>
+</ul>
+<h3>Features</h3>
+<p>Here is a list of some of the important features of Python </p>
+<ul class="list">
+<li><p><strong>Easy to learn</strong>  Python has a simple structure, few keywords, and a clear syntax. This makes it easy for the student to learn quickly. Code written in Python is easier to read and understand.</p></li>
+<li><p><strong>Easy to maintain</strong>  The source code for Python is pretty easy to keep up with.</p></li>
+<li><p><strong>A large standard library</strong>  Most of Python's library is easy to move around and works on UNIX, Windows, Mac.</p></li>
+<li><p><strong>Portable</strong>  Python can run on a wide range of hardware platforms, and all of them have the same interface.</p></li>
+</ul>
+<h3>Python Example</h3>
+<p>Take a look at the following simple Python program </p>
+<pre class="just-code notranslate  language-python" data-lang="python" tabindex="0">
+a = int(input("Enter value for a"))
+b = int(input("Enter value for b"))
+
+print("The number you have entered for a is ", a)
+print("The number you have entered for b is ", b)</pre>
+<p>In our example, we have taken two variables "a" and "b" and assigning some value to those variables. Note that in Python, we don’t need to declare datatype for variables explicitly, as the PVM will assign datatype as per the user’s input.</p>
+<ul class="list">
+<li><p>The <strong><span class="tp-codespan">input()</span></strong> function is used to <a href="/python/python_user_input.htm" target="_blank">take input from the user</a> through keyboard.</p></li>
+<li><p>In Python, the return type of <span class="tp-codespan">input()</span> is string only, so we have to convert it explicitly to the type of data which we require. In our example, we have converted to <strong>int</strong> type explicitly through <strong>int( )</strong> function.</p></li>
+<li><p><strong><span class="tp-codespan">print()</span></strong> is used to display the output.</p></li>
+</ul>
+<h4>Output</h4>
+<p>On execution, this Python code will produce the following output </p>
+<pre class="result notranslate">
+Enter value for a 10
+Enter value for b 20
+
+The number you have entered for a is 10
+The number you have entered for b is 20
+</pre>
+<div class="inserted-div"><script async="true" id="PS_67ebd889ca6f1325b65a5242" type="text/javascript" src="https://ads.playstream.media/api/adserver/scripts?PS_TAGID=67ebd889ca6f1325b65a5242&amp;PS_PUB_ID=67ebd5e3ca6f1325b65a46fe"></script></div>
+<h2>What is C++?</h2>
+<p>C++ is a statically typed, compiled, multi-paradigm, general-purpose programming language with a steep learning curve. Video games, desktop apps, and embedded systems use it extensively. C++ is so compatible with <a href="/cprogramming/index.htm" target="_blank">C</a> that it can build practically all C source code without any changes. Object-oriented programming makes C++ a better-structured and safer language than C.</p>
+<h3>Features</h3>
+<p>Let’s see some features of C++ and the reason of its popularity.</p>
+<ul class="list">
+<li><p><strong>Middle-level language</strong>  It's a middle-level language since it can be used for both systems development and large-scale consumer applications like Media Players, Photoshop, Game Engines, etc.</p></li>
+<li><p><strong>Execution Speed</strong>  C++ code runs quickly. Because it's compiled and uses procedures extensively. Garbage collection, dynamic typing, and other modern features impede program execution.</p></li>
+<li><p><strong>Object-oriented language</strong>  <a href="/cplusplus/cpp_object_oriented.htm" target="_blank">Object-oriented programming</a> is flexible and manageable. Large apps are possible. Growing code makes procedural code harder to handle. C++'s key advantage over C.</p></li>
+<li><p><strong>Extensive Library Support</strong>  C++ has a vast <a href="/cpp_standard_library/index.htm" target="_blank">library</a>. Third-party libraries are supported for fast development.</p></li>
+</ul>
+<h3>C++ Example</h3>
+<p>Let’s understand the syntax of C++ through an example written below.</p>
+<pre class="just-code notranslate  language-cpp" data-lang="cpp" tabindex="0">
+#include
+using namespace std;
+
+int main() {
+   int a, b;
+   cout &lt;&lt; "Enter The value for variable a \n";
+   cin &gt;&gt; a;
+   cout &lt;&lt; "Enter The value for variable b";
+   cin &gt;&gt; b;
+   cout &lt;&lt; "The value of a is "&lt;&lt; a &lt;&lt; "and" &lt;&lt; b;
+   return 0;
+}
+</pre>
+<p>In our example, we are taking input for two variables "a" and "b" from the user through the keyboard and displaying the data on the console.</p>
+<h4>Output</h4>
+<p>On execution, it will produce the following <strong>output</strong> </p>
+<pre class="result notranslate">
+Enter The value for variable a
+10
+Enter The value for variable b
+20
+The value of a is 10 and 20</pre>
+<h2>Comparison Between Python and C++ across Various Aspects</h2>
+<p>Both Python and C++ are among the most popular programming languages. Both of them have their advantages and disadvantages. In this tutorial, we shall take a closure look at their characteristic features which differentiate one from another.</p>
+<h3>Compiled vs Interpreted</h3>
+<p>Like C, C++ is also a compiler-based language. A compiler translates the entire code in a machine language code specific to the operating system in use and processor architecture.</p>
+<p>Python is interpreter-based language. The interpreter executes the source code line by line.</p>
+<h3>Cross platform</h3>
+<p>When a C++ source code such as hello.cpp is compiled on Linux, it can be only run on any other computer with Linux operating system. If required to run on other OS, it needs to be compiled.</p>
+<p>Python interpreter doesn't produce compiled code. Source code is converted to byte code every time it is run on any operating system without any changes or additional steps.</p>
+<h3>Portability</h3>
+<p>Python code is easily portable from one OS to other. C++ code is not portable as it must be recompiled if the OS changes.</p>
+<h3>Speed of Development</h3>
+<p>C++ program is compiled to the machine code. Hence, its execution is faster than interpreter based language.</p>
+<p>Python interpreter doesn't generate the machine code. Conversion of intermediate byte code to machine language is done on each execution of program.</p>
+<p>If a program is to be used frequently, C++ is more efficient than Python.</p>
+<h3>Easy to Learn</h3>
+<p>Compared to C++, Python has a simpler syntax. Its code is more readable. Writing C++ code seems daunting in the beginning because of complicated syntax rule such as use of curly braces and semicolon for sentence termination.</p>
+<p>Python doesn't use curly brackets for marking a block of statements. Instead, it uses indents. Statements of similar indent level mark a block. This makes a Python program more readable.</p>
+<h3>Static vs Dynamic Typing</h3>
+<p>C++ is a statically typed language. The type of variables for storing data need to be declared in the beginning. Undeclared variables can't be used. Once a variable is declared to be of a certain type, value of only that type can be stored in it.</p>
+<p>Python is a dynamically typed language. It doesn't require a variable to be declared before assigning it a value. Since, a variable may store any type of data, it is called dynamically typed.</p>
+<h3>OOP Concepts</h3>
+<p>Both C++ and Python implement object oriented programming concepts. C++ is closer to the theory of OOP than Python. C++ supports the concept of data encapsulation as the visibility of the variables can be defined as public, private and protected.</p>
+<p>Python doesn't have the provision of defining the visibility. Unlike C++, Python doesn't support method overloading. Because it is dynamically typed, all the methods are polymorphic in nature by default.</p>
+<p>C++ is in fact an extension of C. One can say that additional keywords are added in C so that it supports OOP. Hence, we can write a C type procedure oriented program in C++.</p>
+<p>Python is completely object oriented language. Python's data model is such that, even if you can adapt a procedure oriented approach, Python internally uses object-oriented methodology.</p>
+<h3>Garbage Collection</h3>
+<p>C++ uses the concept of pointers. Unused memory in a C++ program is not cleared automatically. In C++, the process of garbage collection is manual. Hence, a C++ program is likely to face memory related exceptional behavior.</p>
+<p>Python has a mechanism of automatic garbage collection. Hence, Python program is more robust and less prone to memory related issues.</p>
+<h3>Application Areas</h3>
+<p>Because C++ program compiles directly to machine code, it is more suitable for systems programming, writing device drivers, embedded systems and operating system utilities.</p>
+<p>Python program is suitable for application programming. Its main area of application today is data science, machine learning, API development etc.</p>
+<h2>Difference Between Python and C++</h2>
+<p>The following table summarizes the differences between Python and C++ </p>
+<div class="table-wrapper"><table class="table table-bordered">
+<tr>
+<th>Criteria</th>
+<th>Python</th>
+<th>C++</th>
+</tr>
+<tr>
+<td>Execution</td>
+<td>Python is an interpreted-based programming language. Python programs are interpreted by an interpreter.</td>
+<td>C++ is a compiler-based programming language. C++ programs are compiled by a compiler.</td>
+</tr>
+<tr>
+<td>Typing</td>
+<td>Python is a dynamic-typed language.</td>
+<td>C++ is a static-typed language.</td>
+</tr>
+<tr>
+<td>Portability</td>
+<td>Python is a highly portable language, code written and executed on a system can be easily run on another system.</td>
+<td>C++ is not a portable language, code written and executed on a system cannot be run on another system without making changes.</td>
+</tr>
+<tr>
+<td>Garbage collection</td>
+<td>Python provides a garbage collection feature. You do not need to worry about the memory management. It is automatic in Python.</td>
+<td>C++ does not provide garbage collection. You have to take care of freeing memories. It is manual in C++.
+</td>
+</tr>
+<tr>
+<td>Syntax</td>
+<td>Python's syntaxes are very easy to read, write, and understand.</td>
+<td>C++'s syntaxes are tedious.</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Python's execution performance is slower than C++'s.</td>
+<td>C++ codes are faster than Python codes.</td>
+</tr>
+<tr>
+<td>Application areas</td>
+<td>Python's application areas are machine learning, web applications, and more.</td>
+<td>C++'s application areas are embedded systems, device drivers, and more.</td>
+</tr>
+</table></div>
+<div class="library-page-bottom-nav ">
+   <div class="button button--blue" id="print-page">
+    <svg fill="white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M112 160V64c0-8.8 7.2-16 16-16H357.5c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c3 3 4.7 7.1 4.7 11.3V160h48V90.5c0-17-6.7-33.3-18.7-45.3L402.7 18.7C390.7 6.7 374.5 0 357.5 0H128C92.7 0 64 28.7 64 64v96h48zm16 208H384v96H128V368zm-16-48c-17.7 0-32 14.3-32 32H48V256c0-8.8 7.2-16 16-16H448c8.8 0 16 7.2 16 16v96H432c0-17.7-14.3-32-32-32H112zm320 80h48c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64V368c0 17.7 14.3 32 32 32H80v80c0 17.7 14.3 32 32 32H400c17.7 0 32-14.3 32-32V400z"/></svg>
+      Print Page
+   </div>
+   <div class="flex-group">
+   <a href="/python/python_features.htm">
+   <div class="button button--neutral">
+   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M1.03117 8.48836C0.64065 8.09783 0.64065 7.46467 1.03117 7.07414L7.39514 0.710183C7.78566 0.319658 8.41883 0.319658 8.80935 0.710183C9.19987 1.10071 9.19987 1.73387 8.80935 2.1244L3.15249 7.78125L8.80935 13.4381C9.19987 13.8286 9.19987 14.4618 8.80935 14.8523C8.41882 15.2428 7.78566 15.2428 7.39513 14.8523L1.03117 8.48836ZM3.12109 8.78125L1.73828 8.78125L1.73828 6.78125L3.12109 6.78125L3.12109 8.78125Z" fill="black" /></svg>
+      Previous
+   </div>
+   </a>
+   <a href="/python/python_hello_world.htm">
+   <div class="button ">Next
+   <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 10 16" fill="none"><path
+   d="M8.87117 8.48836C9.26169 8.09783 9.26169 7.46467 8.87117 7.07414L2.50721 0.710183C2.11668 0.319658 1.48352 0.319658 1.09299 0.710183C0.70247 1.10071 0.70247 1.73387 1.09299 2.1244L6.74985 7.78125L1.093 13.4381C0.702471 13.8286 0.702471 14.4618 1.093 14.8523C1.48352 15.2428 2.11668 15.2428 2.50721 14.8523L8.87117 8.48836ZM6.78125 8.78125L8.16406 8.78125L8.16406 6.78125L6.78125 6.78125L6.78125 8.78125Z" fill="white" /></svg>
+   </div>
+   </a>
+   </div>
+</div>
+   <div class="bottom-library-ads mt"  style="margin:5px;">
+      <div class="google-bottom-ads" id="google-bottom-ads">
+         <div>Advertisements</div>
+                    <div style="width: 750px; height: 300px;">
+                <!-- TAGNAME: 750x300_Bottom_Ad -->
+                <div id='tutorialspointcom47468'>
+                </div>
+           </div>
+                 </div>
+   </div>
+   </div>
+   <div>
+         <div class="data-sticky" id="google-right-ads">
+        <div class="google-right-ad" style="margin: 0px auto !important;margin-top:5px;min-height:280px!important">
+             <!-- TAGNAME: 336x280_Right_Sidebar_1 -->
+             <div id='tutorialspointcom47465'>
+             </div>
+        </div>
+        <div class="google-right-ad" style="margin-top:16px;min-height:280px!important">
+            <!-- TAGNAME: 336x280_Right_Sidebar_2 -->
+            <div id='tutorialspointcom47466'>
+            </div>
+        </div>
+        <div class="google-right-ad" style="margin-top:16px;min-height:280px!important">
+            <!-- TAGNAME: 300x600_Right_Sidebar -->
+           <div id='tutorialspointcom47467'>
+           </div>
+        </div>
+      </div>
+     </div>
+   </div>
+</div>
+</div>
+</main>
+<footer class="bg-neutral-800 text-sm">
+      <div class="container mx-auto px-4 py-12">
+         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:justify-items-center gap-8">
+            <div>
+               <h5 class="text-white font-bold text-base mb-4">TOP TUTORIALS</h5>
+               <ul class="space-y-2">
+                  <li><a href="/python/index.htm" class="text-gray-300 hover:text-white">Python Tutorial</a></li>
+                  <li><a href="/java/index.htm" class="text-gray-300 hover:text-white">Java Tutorial</a></li>
+                  <li><a href="/cplusplus/index.htm" class="text-gray-300 hover:text-white">C++ Tutorial</a></li>
+                  <li><a href="/cprogramming/index.htm" class="text-gray-300 hover:text-white">C Programming
+                        Tutorial</a></li>
+                  <li><a href="/csharp/index.htm" class="text-gray-300 hover:text-white">C# Tutorial</a></li>
+                  <li><a href="/php/index.htm" class="text-gray-300 hover:text-white">PHP Tutorial</a></li>
+                  <li><a href="/r/index.htm" class="text-gray-300 hover:text-white">R Tutorial</a></li>
+                  <li><a href="/html/index.htm" class="text-gray-300 hover:text-white">HTML Tutorial</a></li>
+                  <li><a href="/css/index.htm" class="text-gray-300 hover:text-white">CSS Tutorial</a></li>
+                  <li><a href="/javascript/index.htm" class="text-gray-300 hover:text-white">JavaScript Tutorial</a>
+                  </li>
+                  <li><a href="/sql/index.htm" class="text-gray-300 hover:text-white">SQL Tutorial</a></li>
+               </ul>
+            </div>
+
+            <div>
+               <h5 class="text-white font-bold text-base mb-4">TRENDING TECHNOLOGIES</h5>
+               <ul class="space-y-2">
+                  <li><a href="/cloud_computing/index.htm" class="text-gray-300 hover:text-white">Cloud Computing
+                        Tutorial</a></li>
+                  <li><a href="/amazon_web_services/index.htm" class="text-gray-300 hover:text-white">Amazon Web
+                        Services Tutorial</a></li>
+                  <li><a href="/microsoft_azure/index.htm" class="text-gray-300 hover:text-white">Microsoft Azure
+                        Tutorial</a></li>
+                  <li><a href="/git/index.htm" class="text-gray-300 hover:text-white">Git Tutorial</a></li>
+                  <li><a href="/ethical_hacking/index.htm" class="text-gray-300 hover:text-white">Ethical Hacking
+                        Tutorial</a></li>
+                  <li><a href="/docker/index.htm" class="text-gray-300 hover:text-white">Docker Tutorial</a></li>
+                  <li><a href="/kubernetes/index.htm" class="text-gray-300 hover:text-white">Kubernetes Tutorial</a>
+                  </li>
+                  <li><a href="/data_structures_algorithms/index.htm" class="text-gray-300 hover:text-white">DSA
+                        Tutorial</a></li>
+                  <li><a href="/spring_boot/index.htm" class="text-gray-300 hover:text-white">Spring Boot Tutorial</a>
+                  </li>
+                  <li><a href="/sdlc/index.htm" class="text-gray-300 hover:text-white">SDLC Tutorial</a></li>
+                  <li><a href="/unix/index.htm" class="text-gray-300 hover:text-white">Unix Tutorial</a></li>
+               </ul>
+            </div>
+
+            <div>
+               <h5 class="text-white font-bold text-base mb-4">CERTIFICATIONS</h5>
+               <ul class="space-y-2">
+                  <li><a href="https://market.tutorialspoint.com/certification/business-analytics-certification-2023/index.asp"
+                        class="text-gray-300 hover:text-white">Business Analytics Certification</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/java-prime-pack/index.asp" class="text-gray-300 hover:text-white">Java &
+                        Spring Boot Advanced Certification</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/data-science-advanced-certification/index.asp"
+                        class="text-gray-300 hover:text-white">Data Science Advanced Certification</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/cloud-computing-and-devops-advanced-certification/index.asp"
+                        class="text-gray-300 hover:text-white">Cloud Computing And DevOps</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/advanced-certification-in-business-analytics/index.asp"
+                        class="text-gray-300 hover:text-white">Advanced Certification In Business Analytics</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/artificial-intelligence-and-machine-learning-certification/index.asp"
+                        class="text-gray-300 hover:text-white">Artificial Intelligence And Machine Learning</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/devops-certification/index.asp"
+                        class="text-gray-300 hover:text-white">DevOps Certification</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/game-development-prime-pack/index.asp"
+                        class="text-gray-300 hover:text-white">Game Development Certification</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/frontend-developer-certification/index.asp"
+                        class="text-gray-300 hover:text-white">Front-End Developer Certification</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/aws-prime-pack/index.asp" class="text-gray-300 hover:text-white">AWS
+                        Certification Training</a></li>
+                  <li><a href="https://market.tutorialspoint.com/certification/complete-python-prime-pack/index.asp"
+                        class="text-gray-300 hover:text-white">Python Programming Certification</a></li>
+               </ul>
+            </div>
+
+            <div>
+               <h5 class="text-white font-bold text-base mb-4">COMPILERS & EDITORS</h5>
+               <ul class="space-y-2">
+                    <li><a href="/compilers/online-java-compiler.htm" class="text-gray-300 hover:text-white" title="Online Java Compiler">Online Java Compiler</a></li>
+                    <li><a href="/compilers/online-python-compiler.htm" class="text-gray-300 hover:text-white" title="Online Python Compiler">Online Python Compiler</a></li>
+                    <li><a href="/compilers/online-golang-compiler.htm" class="text-gray-300 hover:text-white" title="Online Go Compiler">Online Go Compiler</a></li>
+                    <li><a href="/compilers/online-c-compiler.htm" class="text-gray-300 hover:text-white" title="Online C Compiler">Online C Compiler</a></li>
+                    <li><a href="/compilers/online-cpp-compiler.htm" class="text-gray-300 hover:text-white" title="Online C++ Compiler">Online C++ Compiler</a></li>
+                    <li><a href="/compilers/online-csharp-compiler.htm" class="text-gray-300 hover:text-white" title="Online C# Compiler">Online C# Compiler</a></li>
+                    <li><a href="/compilers/online-php-compiler.htm" class="text-gray-300 hover:text-white" title="Online PHP Compiler">Online PHP Compiler</a></li>
+                    <li><a href="/compilers/online-matlab-compiler.htm" class="text-gray-300 hover:text-white" title="Online MATLAB Compiler">Online MATLAB Compiler</a></li>
+                    <li><a href="/compilers/online-bash-terminal.htm" class="text-gray-300 hover:text-white" title="Online Bash Terminal">Online Bash Terminal</a></li>
+                    <li><a href="/compilers/online-sql-editor.htm" class="text-gray-300 hover:text-white" title="Online SQL Compiler">Online SQL Compiler</a></li>
+                    <li><a href="/compilers/online-html-editor.htm" class="text-gray-300 hover:text-white" title="Online Html Editor">Online Html Editor</a></li>
+               </ul>
+            </div>
+         </div>
+
+         <ul class="footer-links flex text-xs flex-wrap justify-center gap-x-2 text-gray-300 mt-10 mb-6">
+           <li><a href="/about/index.htm" class="hover:text-white">ABOUT US</a></li>
+           <li><a href="/about/about_team.htm" class="hover:text-white">OUR TEAM</a></li>
+           <li><a href="/about/about_careers.htm" class="hover:text-white">CAREERS</a></li>
+           <li><a href="/job_search.php" class="hover:text-white">JOBS</a></li>
+           <li><a href="/about/contact_us.htm" class="hover:text-white">CONTACT US</a></li>
+           <li><a href="/about/about_terms_of_use.htm" class="hover:text-white">TERMS OF USE</a></li>
+           <li><a href="/about/about_privacy.htm" class="hover:text-white">PRIVACY POLICY</a></li>
+           <li><a href="/about/return_refund_policy.htm" class="hover:text-white">REFUND POLICY</a></li>
+           <li><a href="/about/about_cookies.htm" class="hover:text-white">COOKIES POLICY</a></li>
+           <li><a href="/about/faq.htm" class="hover:text-white">FAQ'S</a></li>
+         </ul>
+
+         <div class="flex flex-col md:flex-row items-center justify-center gap-8 py-6 border-t border-gray-700">
+            <img class="h-8 mb-4 md:mb-0" src="https://www.tutorialspoint.com/static/images/logo-footer.svg" loading="lazy" alt="tutorials point logo">
+
+            <div class="flex space-x-6 mb-4 md:mb-0">
+               <a rel="nofollow" target="_blank" href="https://www.facebook.com/tutorialspointindia" class="text-gray-400 hover:text-white" aria-label="Facebook">
+                  <i class="!size-7 fa-brands fa-facebook-f"></i>
+               </a>
+               <a target="_blank" href="https://x.com/tutorialspoint" rel="nofollow" class="text-gray-400 hover:text-white" aria-label="X">
+                  <i class="!size-7 fa-brands fa-x-twitter"></i>
+               </a>
+               <a target="_blank" href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" rel="nofollow" class="text-gray-400 hover:text-white" aria-label="YouTube">
+                  <i class="!size-7 fa-brands fa-youtube"></i>
+               </a>
+               <a target="_blank" href="https://www.linkedin.com/company/tutorialspoint/" rel="nofollow" class="text-gray-400 hover:text-white" aria-label="Linkedin">
+                  <i class="!size-7 fa-brands fa-linkedin-in"></i>
+               </a>
+               <a target="_blank" href="https://www.instagram.com/tutorialspoint_/" rel="nofollow" class="text-gray-400 hover:text-white" aria-label="Instagram">
+                  <i class="!size-7 fa-brands fa-instagram"></i>
+               </a>
+            </div>
+
+            <div class="flex space-x-4">
+               <a href="https://play.google.com/store/apps/details?id=com.tutorialspoint.onlineviewer" target="_blank"
+                  rel="nofollow">
+                  <img src="https://www.tutorialspoint.com/static/images/googleplay.svg" alt="Download Android App" loading="lazy" class="h-10">
+               </a>
+               <a href="https://itunes.apple.com/us/app/tutorials-point/id914891263?ls=1&mt=8" target="_blank" rel="nofollow">
+                  <img src="https://www.tutorialspoint.com/static/images/appstore.svg" alt="Download IOS App" loading="lazy" class="h-10">
+               </a>
+            </div>
+         </div>
+         <div class="pt-6 pb-8 text-center border-t border-gray-700">
+            <p class="text-gray-300 max-w-5xl mx-auto mb-2">
+               Tutorials Point is a leading Ed Tech company striving to provide the best learning material on technical
+               and non-technical subjects.
+            </p>
+            <p class="text-gray-300 mt-8 text-sm">© Copyright 2025. All Rights Reserved.</p>
+         </div>
+      </div>
+</footer>
+<script src="/static/js/new-lib-script.js?mv10.83"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<div id="fluid-privacy-opt-out-link" onmouseover="this.style.color='rgb(25, 103, 210)'; this.style.cursor='pointer'" onmouseout="this.style.color='#CCCCCC'; this.style.cursor='auto'"></div>
+<script>
+const privacyOptOutLink = document.getElementById("fluid-privacy-opt-out-link");
+window.googlefc = window.googlefc || { callbackQueue: [] };
+window.googlefc.ccpa = window.googlefc.ccpa || {};
+window.googlefc.ccpa.overrideDnsLink = true;
+window.googlefc.callbackQueue.push({
+    "CONSENT_API_READY": () => {
+      if (!privacyOptOutLink) {
+        return;
+      }
+      !!window.__tcfapi && window.__tcfapi("addEventListener", 2, (tcData, success) => {
+        if (success && tcData.gdprApplies) {
+          privacyOptOutLink.innerText = "Change GDPR Consent";
+          privacyOptOutLink.addEventListener("click", () => googlefc.showRevocationMessage());
+          return;
+        }
+      });
+    }
+});
+window.googlefc.callbackQueue.push({
+    "INITIAL_CCPA_DATA_READY": () => {
+      if (!privacyOptOutLink) {
+        return;
+      }
+
+      if (googlefc.ccpa.getInitialCcpaStatus() && googlefc.ccpa.getInitialCcpaStatus() === googlefc.ccpa.InitialCcpaStatusEnum.NOT_OPTED_OUT) {
+        privacyOptOutLink.innerText = "Don't sell or share my personal info";
+        privacyOptOutLink.addEventListener("click", () => googlefc.ccpa.openConfirmationDialog((optedOut) => {
+          if (optedOut) {
+            privacyOptOutLink.style.display = "none";
+          }
+        }));
+        return
+      }
+    }
+ });
+</script>
+<script>
+if(getCookie('auid') == '' || getCookie('auid') == null){
+   window.onload = function() {
+        initializeGoogleOneTap();
+   };
+}
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EX9ZP4VY84"></script>
+<script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+     gtag('config', 'G-EX9ZP4VY84');
+</script>
+<!-- New Facebook Pixel Code -->
+<script>
+   !function(f,b,e,v,n,t,s)
+   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+   n.queue=[];t=b.createElement(e);t.async=!0;
+   t.src=v;s=b.getElementsByTagName(e)[0];
+   s.parentNode.insertBefore(t,s)}(window,document,'script',
+   'https://connect.facebook.net/en_US/fbevents.js');
+   fbq('init', '854536859149047');
+   fbq('track', 'PageView');
+</script>
+ <!-- End facebook Pixel Code -->
+</body>
+</html>

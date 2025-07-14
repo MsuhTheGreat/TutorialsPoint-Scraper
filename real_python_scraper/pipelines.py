@@ -21,7 +21,7 @@ class RealPythonPipeline:
         
         # Get correct publish date
         date_lst = adapter.get("publish_date")
-        adapter["publish_date"] = date_lst[-1]
+        adapter["publish_date"] = date_lst[-1].strip("\n").strip()
 
         # Convert List of contents to a string
         list_of_contents = adapter.get("list_of_contents")

@@ -3,6 +3,7 @@ from real_python_scraper.items import RealPythonItem
 from trafilatura import extract_metadata
 import httpx
 import random
+from html_to_markdown import convert_to_markdown
 
 
 SCRAPEOPS_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-headers'
@@ -31,94 +32,65 @@ def get_webshare_proxies():
 
 class TutorialsSpider(scrapy.Spider):
     name = "tutorials"
-    allowed_domains = ["realpython.com"]
-    categories = ["basics", "intermediate", "advanced"]
-    selectors = {
-        'tutorials': '//div[contains(@class, "col-12") and contains(@class, "col-md-6") and contains(@class, "mb-5")]',
-        'url': './div[contains(@class, "card")]/a/@href',
-        'title': '//div[contains(@class, "col-md-11") or contains(@class, "col-lg-8") or contains(@class, "article") or contains(@class, "with-headerlinks")]//h1/text()',
-        'author': '//div[contains(@class, "mb-0")]/span[contains(@class, "text-muted")]/a[contains(@class, "text-muted") and contains(@href, "#author")]/text()',
-        'tags': '//span[contains(@class, "d-inline") or contains(@class, "d-md-block")]/a[contains(@class, "badge") or contains(@class, "badge-light") or contains(@class, "text-muted")]/text()',
-        'list_of_contents': '//div[contains(@class, "article-body")]//div[contains(@class, "toc")]/ul/li',
-        'publish_date': '//div[contains(@class, "mb-0")]//span[contains(@class, "text-muted")]/text()[normalize-space()]',
-        'next_page': '//ul[contains(@class, "pagination")]/li[@class="page-item"][last()]/a/@href'
-    }
+    allowed_domains = ["tutorialspoint.com"]
+    url_selector = '//ul[contains(@class, "toc") or contains(@class, "chapters")]/li'
+    headers_list = get_scrapeops_headers()
+    proxy_list = get_webshare_proxies()
+    sections = []
 
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.headers_list = get_scrapeops_headers()
-        self.proxy_list = get_webshare_proxies()
-    
-    
-    def start_requests(self):
-        for category in self.categories:
-            url = "https://realpython.com/tutorials/" + category
-            yield scrapy.Request(
-                url,
-                callback=self.parse_tutorials,
-                headers=random.choice(self.headers_list),
-                meta={'proxy': random.choice(self.proxy_list)}
-            )
-
-
-    def parse_tutorials(self, response):
-        tutorials = response.xpath(self.selectors["tutorials"])
-        for tutorial in tutorials:
-            tutorial_url = tutorial.xpath(self.selectors["url"]).get()
-            if tutorial_url:
-                unwanted_keywords = ["podcast", "quiz", "course", "quizzes", "podcasts", "courses"]
-                if not any(word in tutorial_url for word in unwanted_keywords):
-                    yield response.follow(
-                    tutorial_url,
-                    callback=self.parse_page,
-                    headers=random.choice(self.headers_list),
-                    meta={'proxy': random.choice(self.proxy_list)}
-                    )
-
-        next_page = response.xpath(self.selectors["next_page"]).get(default=None)
-        if next_page:
-            yield response.follow(
-                next_page,
-                callback=self.parse_tutorials,
-                headers=random.choice(self.headers_list),
-                meta={'proxy': random.choice(self.proxy_list)}
-            )
+    async def start(self):
+        url = "https://www.tutorialspoint.com/python"
+        yield scrapy.Request(
+            url = url,
+            callback=self.collect_urls,
+            headers=random.choice(self.headers_list),
+            meta={"proxy": random.choice(self.proxy_list)}
+        )
     
 
-    def parse_page(self, response):
-        real_python_item = RealPythonItem()
+    def collect_urls(self, response):
+        section = None
+        chapters = response.xpath(self.url_selector)
+
+        for chapter in chapters:
+            if chapter.xpath('contains(@class, "heading")'):
+                section = {
+                    "title": chapter.xpath('/text()'),
+                    "pages": []
+                }
+                self.sections.append(section)
+            else:
+                url = chapter.xpath('./a/@href').get()
+                if url: 
+                    url = 'https://www.tutorialspoint.com' + url
+                else:
+                    print("🚨 URL NOT FOUND")
+                    continue
+                if section is None:
+                    section = {
+                            "title": "Introduction To Python",
+                            "pages": []
+                        }
+                    self.sections.append(section)
+                section["pages"].append({"url": url})
         
-        real_python_item["title"]            = response.xpath(self.selectors["title"]).get(default=None)
-        real_python_item["author"]           = response.xpath(self.selectors["author"]).get(default=None)
-        real_python_item["publish_date"]     = response.xpath(self.selectors["publish_date"]).getall()
-        real_python_item["summary"]          = self.get_summary(response)
-        real_python_item["list_of_contents"] = self.list_of_contents(response, self.selectors["list_of_contents"])
-        real_python_item["tags"]             = response.xpath(self.selectors["tags"]).getall()
-        real_python_item["url"]              = response.url
+        self.prepare_raw_data()
+        
 
-        yield real_python_item
+    def prepare_raw_data(self):
+        for section in self.sections:
+            for page in section["pages"]:
+                url = page["url"]
+                response = yield scrapy.Request(
+                    url = url,
+                    headers=random.choice(self.headers_list),
+                    meta={"proxy": random.choice(self.proxy_list)}
+                )                
+                html = response.xpath('//div[@id="mainContent"]')
+                markdown = convert_to_markdown(html)
+                page["raw_data"] = markdown
     
 
-    def list_of_contents(self, response, li_elements_selector):
-        lst = []
-        li_elements = response.xpath(li_elements_selector)
-        for li_element in li_elements:
-            lst.append(li_element.xpath('./a/text()').get(default=None))
-            if li_element.xpath('./ul'):
-                sub_li_elements = li_element.xpath('./ul/li')
-                for sub_li_element in sub_li_elements:
-                    result = sub_li_element.xpath('./a/text()').get(default=None)
-                    if result:
-                        lst.append(f"\t{result}")
-        return lst
-    
-
-    def get_summary(self, response):
-        html = response.text
-        metadata = extract_metadata(html)
-        if metadata and metadata.description:
-            return metadata.description.strip()
-        return None
-    
-
+    def get_cleaned_data(self):
+        ...
