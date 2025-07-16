@@ -2,13 +2,19 @@ import scrapy
 import trafilatura
 import random
 import httpx
+import os
+from dotenv import load_dotenv
+from tutorials_point_scraper.items import TutorialsPointItem
 
-SCRAPEOPS_API_KEY = '7be29637-7ac6-4b9c-a168-985cf51ddbfe'
-WEBSHARE_API_KEY = 'f23s4fccj3lflqp7dez3nijprk3tgkuofh58grus'
+load_dotenv()
+
+SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY", "")
+WEBSHARE_API_KEY = os.getenv("WEBSHARE_API_KEY", "")
+HTTPX_CLIENT_TIMEOUT = 15
 
 
 def get_scrapeops_headers():
-    with httpx.Client(timeout=15) as client:
+    with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
         params = {'api_key': SCRAPEOPS_API_KEY, 'num_results': 50}
         response = client.get('https://headers.scrapeops.io/v1/browser-headers', params=params)
         return response.json().get("result", [])
@@ -16,14 +22,14 @@ def get_scrapeops_headers():
 
 def get_webshare_proxies():
     headers = {"Authorization": f"Token {WEBSHARE_API_KEY}"}
-    with httpx.Client(timeout=15) as client:
+    with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
         response = client.get("https://proxy.webshare.io/api/v2/proxy/list/?mode=direct", headers=headers)
         data = response.json()
     return [f'http://{result["username"]}:{result["password"]}@{result["proxy_address"]}:{result["port"]}' for result in data['results']]
 
 
 class TutorialsSpider(scrapy.Spider):
-    name = "test"
+    name = "tutorials"
     allowed_domains = ["tutorialspoint.com"]
     start_urls = ["https://www.tutorialspoint.com/python"]
 
@@ -35,14 +41,13 @@ class TutorialsSpider(scrapy.Spider):
 
     def parse(self, response):
         section = None
-        # Fix xpath: contains() must be inside [], use 'and' for multiple classes
-        chapters = response.xpath('//ul[contains(@class, "toc") or contains(@class, "chapters")]/li')
+        chapters = response.xpath('//ul[contains(@class, "toc") and contains(@class, "chapters")]/li')
 
         for chapter in chapters:
-            # Fixed xpath: contains() inside [] and correct usage for class matching
-            is_heading = chapter.xpath('contains(@class, "heading")').get()
-            if is_heading:
-                title = chapter.xpath('text()').get()
+            classes = chapter.attrib.get('class', '')
+
+            if 'heading' in classes.split():
+                title = chapter.xpath('normalize-space(text())').get()
                 section = {
                     "title": title.strip() if title else "Untitled Section",
                     "pages": []
@@ -51,7 +56,7 @@ class TutorialsSpider(scrapy.Spider):
             else:
                 url = chapter.xpath('./a/@href').get()
                 if not url:
-                    self.logger.warning("🚨 URL NOT FOUND for chapter: %s", chapter.get())
+                    self.logger.warning(f"🚨 URL NOT FOUND for chapter: {chapter.get()}")
                     continue
                 full_url = response.urljoin(url)
 
@@ -70,28 +75,31 @@ class TutorialsSpider(scrapy.Spider):
                     meta={"proxy": random.choice(self.proxy_list)}
                 )
 
+
     def parse_blog_page(self, response):
+        tutorials_point_item = TutorialsPointItem()
         html = response.text
         url = response.url
 
-        metadata = trafilatura.extract_metadata(html, url=url) or {}
+        metadata = trafilatura.extract_metadata(html)
+        
+        if metadata: metadata = metadata.as_dict()
+        else: metadata = {}
+        
         toc = self.extract_headings_with_hierarchy(response)
 
-        yield {
-            "url": url,
-            "title": metadata.get("title"),
-            "author": metadata.get("author"),
-            "date": metadata.get("date"),
-            "tags": metadata.get("tags"),
-            "summary": metadata.get("summary"),
-            "table_of_contents": toc
-        }
+        tutorials_point_item["url"]              = url
+        tutorials_point_item["title"]            = metadata.get("title")
+        tutorials_point_item["author"]           = metadata.get("author")
+        tutorials_point_item["publish_date"]     = metadata.get("date")
+        tutorials_point_item["tags"]             = metadata.get("tags")
+        tutorials_point_item["summary"]          = metadata.get("summary")
+        tutorials_point_item["list_of_contents"] = toc
+
+        yield tutorials_point_item
+
 
     def extract_headings_with_hierarchy(self, response):
-        """
-        Extract all h1-h6 headings under #mainContent with nested hierarchy,
-        using Scrapy selectors and stack logic for correct nesting.
-        """
         headings = response.xpath('//*[@id="mainContent"]//*[self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6]')
 
         hierarchy = []
@@ -100,7 +108,7 @@ class TutorialsSpider(scrapy.Spider):
         for tag in headings:
             text = tag.xpath('normalize-space()').get()
             tag_name = tag.root.tag
-            level = int(tag_name[1])  # h2 -> 2
+            level = int(tag_name[1])
 
             heading_data = {
                 "heading": text,
@@ -108,7 +116,6 @@ class TutorialsSpider(scrapy.Spider):
                 "sub_headings": []
             }
 
-            # Pop stack until the current heading can be nested under the correct parent
             while stack and stack[-1]["level"] >= level:
                 stack.pop()
 
