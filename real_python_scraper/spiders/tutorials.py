@@ -69,28 +69,10 @@ class TutorialsSpider(scrapy.Spider):
                     continue
                 if section is None:
                     section = {
-                            "title": "Introduction To Python",
-                            "pages": []
+                        "title": "Introduction To Python",
+                        "pages": []
                         }
                     self.sections.append(section)
                 section["pages"].append({"url": url})
         
-        self.prepare_raw_data()
         
-
-    def prepare_raw_data(self):
-        for section in self.sections:
-            for page in section["pages"]:
-                url = page["url"]
-                response = yield scrapy.Request(
-                    url = url,
-                    headers=random.choice(self.headers_list),
-                    meta={"proxy": random.choice(self.proxy_list)}
-                )                
-                html = response.xpath('//div[@id="mainContent"]')
-                markdown = convert_to_markdown(html)
-                page["raw_data"] = markdown
-    
-
-    def get_cleaned_data(self):
-        ...
