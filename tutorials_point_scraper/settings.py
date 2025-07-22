@@ -5,13 +5,17 @@ BOT_NAME = "tutorials_point_scraper"
 SPIDER_MODULES = ["tutorials_point_scraper.spiders"]
 NEWSPIDER_MODULE = "tutorials_point_scraper.spiders"
 
-LOG_LEVEL = "WARNING"
-
 ROBOTSTXT_OBEY = False
 
 FEEDS = {
     'data.jsonl': {'format': 'jsonl', 'overwrite': True}
     }
+
+LOG_STDOUT = True
+LOG_LEVEL = "DEBUG"
+LOG_FILE = "scrapy_log.log"
+LOG_FILE_APPEND = False
+# LOG_FORMAT = '%(asctime)s [%(levelname)s] %(message)s'
 
 CONCURRENT_REQUESTS = 32
 

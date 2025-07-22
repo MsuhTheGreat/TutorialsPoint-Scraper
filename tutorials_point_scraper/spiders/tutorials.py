@@ -97,8 +97,6 @@ class TutorialsSpider(scrapy.Spider):
         tutorials_point_item["summary"]          = metadata.get("summary")
         tutorials_point_item["list_of_contents"] = toc
 
-        self.logger.info(json.dumps(dict(tutorials_point_item), ensure_ascii=False))
-        self.logger.debug(json.dumps(dict(tutorials_point_item), ensure_ascii=False))
         yield tutorials_point_item
 
 
