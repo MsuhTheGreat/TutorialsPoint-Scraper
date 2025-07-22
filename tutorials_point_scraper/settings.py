@@ -1,13 +1,14 @@
+import tutorials_point_scraper.logging_config
+
 BOT_NAME = "tutorials_point_scraper"
 
 SPIDER_MODULES = ["tutorials_point_scraper.spiders"]
 NEWSPIDER_MODULE = "tutorials_point_scraper.spiders"
 
+LOG_LEVEL = "WARNING"
+
 ROBOTSTXT_OBEY = False
 
-LOG_ENABLED = True
-# LOG_LEVEL = 'ERROR'
-LOG_FILE = 'scrapy_log.log'
 FEEDS = {
     'data.jsonl': {'format': 'jsonl', 'overwrite': True}
     }
