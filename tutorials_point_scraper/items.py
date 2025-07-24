@@ -1,17 +1,17 @@
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
+"""
+TutorialsPoint Scraper Items
+-----------------------------
+Defines the fields used to collect tutorial data from TutorialsPoint.
+"""
 
 import scrapy
 
 
 class TutorialsPointItem(scrapy.Item):
-    # define the fields for your item here like:
-    title = scrapy.Field()
-    author = scrapy.Field()
-    publish_date = scrapy.Field()
-    summary = scrapy.Field()
+    title            = scrapy.Field()
+    author           = scrapy.Field()
+    publish_date     = scrapy.Field()
+    summary          = scrapy.Field()
+    tags             = scrapy.Field()
+    url              = scrapy.Field()
     list_of_contents = scrapy.Field()
-    tags = scrapy.Field()
-    url = scrapy.Field()

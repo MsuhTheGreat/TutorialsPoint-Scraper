@@ -1,20 +1,39 @@
+"""
+TutorialsPoint Spider
+----------------------
+Scrapy spider for crawling Python tutorials from TutorialsPoint.
+
+Features:
+- Uses rotating headers and proxies to mimic real users.
+- Extracts chapters with structured sections and pages.
+- Fetches metadata using Trafilatura.
+- Extracts heading hierarchy (H1 to H6) as list of contents.
+
+Environment Variables Required:
+- SCRAPEOPS_API_KEY: For ScrapeOps Browser Headers API.
+- WEBSHARE_API_KEY: For proxy rotation via Webshare.io.
+"""
+
 import scrapy
 import trafilatura
 import random
 import httpx
 import os
+
 from dotenv import load_dotenv
 from tutorials_point_scraper.items import TutorialsPointItem
-import json
 
+# Load environment variables from .env file
 load_dotenv()
 
 SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY", "")
 WEBSHARE_API_KEY = os.getenv("WEBSHARE_API_KEY", "")
 HTTPX_CLIENT_TIMEOUT = 15
+PROXY_RETRY_TIMES = 5
 
 
 def get_scrapeops_headers():
+    """Fetch rotating browser headers from ScrapeOps."""
     with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
         params = {'api_key': SCRAPEOPS_API_KEY, 'num_results': 50}
         response = client.get('https://headers.scrapeops.io/v1/browser-headers', params=params)
@@ -22,14 +41,22 @@ def get_scrapeops_headers():
 
 
 def get_webshare_proxies():
+    """Fetch proxy list from Webshare.io."""
     headers = {"Authorization": f"Token {WEBSHARE_API_KEY}"}
     with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
         response = client.get("https://proxy.webshare.io/api/v2/proxy/list/?mode=direct", headers=headers)
         data = response.json()
-    return [f'http://{result["username"]}:{result["password"]}@{result["proxy_address"]}:{result["port"]}' for result in data['results']]
+    return [
+        f'http://{result["username"]}:{result["password"]}@{result["proxy_address"]}:{result["port"]}'
+        for result in data['results']
+    ]
 
 
 class TutorialsSpider(scrapy.Spider):
+    """
+    Scrapy spider to extract metadata and structured content
+    from the Python tutorial section on TutorialsPoint.
+    """
     name = "tutorials"
     allowed_domains = ["tutorialspoint.com"]
     start_urls = ["https://www.tutorialspoint.com/python"]
@@ -41,6 +68,10 @@ class TutorialsSpider(scrapy.Spider):
         self.sections = []
 
     def parse(self, response):
+        """
+        Parse the table of contents page and schedule requests
+        for individual chapter/tutorial pages.
+        """
         section = None
         chapters = response.xpath('//ul[contains(@class, "toc") and contains(@class, "chapters")]/li')
 
@@ -48,6 +79,7 @@ class TutorialsSpider(scrapy.Spider):
             classes = chapter.attrib.get('class', '')
 
             if 'heading' in classes.split():
+                # Top-level section heading
                 title = chapter.xpath('normalize-space(text())').get()
                 section = {
                     "title": title.strip() if title else "Untitled Section",
@@ -55,10 +87,12 @@ class TutorialsSpider(scrapy.Spider):
                 }
                 self.sections.append(section)
             else:
+                # Actual tutorial page link under section
                 url = chapter.xpath('./a/@href').get()
                 if not url:
                     self.logger.warning(f"🚨 URL NOT FOUND for chapter: {chapter.get()}")
                     continue
+
                 full_url = response.urljoin(url)
 
                 if section is None:
@@ -67,26 +101,31 @@ class TutorialsSpider(scrapy.Spider):
                         "pages": []
                     }
                     self.sections.append(section)
+
                 section["pages"].append({"url": full_url})
 
+                # Scrape tutorial page with randomized headers and proxy
                 yield scrapy.Request(
                     url=full_url,
                     callback=self.parse_blog_page,
                     headers=random.choice(self.headers_list),
-                    meta={"proxy": random.choice(self.proxy_list)}
+                    meta={
+                        "proxy": random.choice(self.proxy_list),
+                        "retry_times": PROXY_RETRY_TIMES,
+                        "dont_retry": False
+                    },
+                    errback=self.errback_log
                 )
 
-
     def parse_blog_page(self, response):
+        """Parse and extract metadata and headings from a tutorial page."""
         tutorials_point_item = TutorialsPointItem()
         html = response.text
         url = response.url
 
         metadata = trafilatura.extract_metadata(html)
-        
-        if metadata: metadata = metadata.as_dict()
-        else: metadata = {}
-        
+        metadata = metadata.as_dict() if metadata else {}
+
         toc = self.extract_headings_with_hierarchy(response)
 
         tutorials_point_item["url"]              = url
@@ -99,9 +138,14 @@ class TutorialsSpider(scrapy.Spider):
 
         yield tutorials_point_item
 
-
     def extract_headings_with_hierarchy(self, response):
-        headings = response.xpath('//*[@id="mainContent"]//*[self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6]')
+        """
+        Extract headings (H1 to H6) from content in a hierarchical format.
+        Returns a nested list of headings with levels and subheadings.
+        """
+        headings = response.xpath(
+            '//*[@id="mainContent"]//*[self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6]'
+        )
 
         hierarchy = []
         stack = []
@@ -117,6 +161,7 @@ class TutorialsSpider(scrapy.Spider):
                 "sub_headings": []
             }
 
+            # Maintain parent-child hierarchy
             while stack and stack[-1]["level"] >= level:
                 stack.pop()
 
@@ -128,3 +173,10 @@ class TutorialsSpider(scrapy.Spider):
             stack.append(heading_data)
 
         return hierarchy
+    
+    def errback_log(self, failure):
+        request = failure.request
+        self.logger.warning(f"❌ Failed URL: {request.url}")
+        self.logger.warning(f"🔁 Proxy used: {request.meta.get('proxy')}")
+        self.logger.warning(repr(failure))
+

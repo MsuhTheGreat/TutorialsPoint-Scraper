@@ -1,7 +1,10 @@
 import logging
 from scrapy.utils.log import configure_logging
+import os
 
+os.makedirs("logs", exist_ok=True)
 
+LOG_FILE = "logs/tutorials.log"
 LOG_LEVEL = 'DEBUG'
 LOG_ENABLED = False  # disable Scrapy’s root handler setup
 
@@ -16,7 +19,7 @@ console_formatter = logging.Formatter('[%(levelname)s] %(message)s')
 console_handler.setFormatter(console_formatter)
 
 # File Handler
-file_handler = logging.FileHandler('scrapy_log.log', mode='w', encoding='utf-8')
+file_handler = logging.FileHandler(LOG_FILE, mode='w', encoding='utf-8')
 file_handler.setLevel(LOG_LEVEL)
 file_formatter = logging.Formatter('[%(levelname)s] %(message)s')
 file_handler.setFormatter(file_formatter)
