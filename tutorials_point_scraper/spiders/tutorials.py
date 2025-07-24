@@ -26,8 +26,8 @@ from tutorials_point_scraper.items import TutorialsPointItem
 # Load environment variables from .env file
 load_dotenv()
 
-SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY", "")
-WEBSHARE_API_KEY = os.getenv("WEBSHARE_API_KEY", "")
+SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY")
+WEBSHARE_API_KEY = os.getenv("WEBSHARE_API_KEY")
 HTTPX_CLIENT_TIMEOUT = 15
 PROXY_RETRY_TIMES = 5
 
@@ -35,7 +35,7 @@ PROXY_RETRY_TIMES = 5
 def get_scrapeops_headers():
     """Fetch rotating browser headers from ScrapeOps."""
     with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
-        params = {'api_key': SCRAPEOPS_API_KEY, 'num_results': 50}
+        params = {'api_key': SCRAPEOPS_API_KEY, 'num_results': '50'}
         response = client.get('https://headers.scrapeops.io/v1/browser-headers', params=params)
         return response.json().get("result", [])
 
