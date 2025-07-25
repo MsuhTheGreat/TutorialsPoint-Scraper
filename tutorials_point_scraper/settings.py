@@ -18,6 +18,14 @@ BOT_NAME = "tutorials_point_scraper"
 SPIDER_MODULES = ["tutorials_point_scraper.spiders"]
 NEWSPIDER_MODULE = "tutorials_point_scraper.spiders"
 
+# httpx client timeout
+HTTPX_CLIENT_TIMEOUT = 15
+
+# Enable retry middleware
+RETRY_ENABLED = True
+RETRY_TIMES = 5
+
+
 # Disable obeying robots.txt
 ROBOTSTXT_OBEY = False
 

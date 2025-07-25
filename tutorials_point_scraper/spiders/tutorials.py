@@ -19,37 +19,59 @@ import trafilatura
 import random
 import httpx
 import os
-
+import sys
 from dotenv import load_dotenv
 from tutorials_point_scraper.items import TutorialsPointItem
+from scrapy.utils.project import get_project_settings
 
 # Load environment variables from .env file
 load_dotenv()
 
-SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY")
-WEBSHARE_API_KEY = os.getenv("WEBSHARE_API_KEY")
-HTTPX_CLIENT_TIMEOUT = 15
-PROXY_RETRY_TIMES = 5
+# Get settings
+settings = get_project_settings()
+
+SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY", "")
+WEBSHARE_API_KEY = os.getenv("WEBSHARE_API_KEY", "")
+HTTPX_CLIENT_TIMEOUT = settings.get("HTTPX_CLIENT_TIMEOUT", 15)
+
+if SCRAPEOPS_API_KEY == "":
+    print("❌ No ScrapeOps API Key found. Scraper exiting.")
+    sys.exit(1)
+if WEBSHARE_API_KEY == "":
+    print("❌ No Webshare API Key found. Scraper exiting.")
+    sys.exit(1)
 
 
 def get_scrapeops_headers():
     """Fetch rotating browser headers from ScrapeOps."""
-    with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
-        params = {'api_key': SCRAPEOPS_API_KEY, 'num_results': '50'}
-        response = client.get('https://headers.scrapeops.io/v1/browser-headers', params=params)
-        return response.json().get("result", [])
+    try:
+        with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
+            params = {'api_key': SCRAPEOPS_API_KEY, 'num_results': 50}
+            response = client.get('https://headers.scrapeops.io/v1/browser-headers', params=params)
+            response.raise_for_status()
+            return response.json().get("result", [])
+    except httpx.HTTPStatusError as e:
+        raise RuntimeError(f"❌ HTTP error from API: {e}")
+    except Exception as e:
+        raise RuntimeError(f"❌ Could not get browser headers from ScrapeOps. Error: {e}")
 
 
 def get_webshare_proxies():
     """Fetch proxy list from Webshare.io."""
     headers = {"Authorization": f"Token {WEBSHARE_API_KEY}"}
-    with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
-        response = client.get("https://proxy.webshare.io/api/v2/proxy/list/?mode=direct", headers=headers)
-        data = response.json()
-    return [
-        f'http://{result["username"]}:{result["password"]}@{result["proxy_address"]}:{result["port"]}'
-        for result in data['results']
-    ]
+    try:
+        with httpx.Client(timeout=HTTPX_CLIENT_TIMEOUT) as client:
+            response = client.get("https://proxy.webshare.io/api/v2/proxy/list/?mode=direct", headers=headers)
+            response.raise_for_status()
+            data = response.json()
+        return [
+            f'http://{result["username"]}:{result["password"]}@{result["proxy_address"]}:{result["port"]}'
+            for result in data['results']
+        ]
+    except httpx.HTTPStatusError as e:
+        raise RuntimeError(f"❌ HTTP error from API: {e}")
+    except Exception as e:
+        raise RuntimeError(f"❌ Could not get proxies from Webshare. Error: {e}")
 
 
 class TutorialsSpider(scrapy.Spider):
@@ -63,8 +85,18 @@ class TutorialsSpider(scrapy.Spider):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.headers_list = get_scrapeops_headers()
-        self.proxy_list = get_webshare_proxies()
+        try: 
+            self.headers_list = get_scrapeops_headers()
+            if not self.headers_list: raise RuntimeError(f"❌ Could not get browser headers from ScrapeOps. Even with response code 200")
+        except RuntimeError as e: 
+            self.logger.error(e)
+            sys.exit(1)
+        try:
+            self.proxy_list = get_webshare_proxies()
+            if not self.proxy_list: raise RuntimeError(f"❌ Could not get proxies from Webshare. Even with response code 200")
+        except Exception as e:
+            self.logger.error(e)
+            sys.exit(1)
         self.sections = []
 
     def parse(self, response):
@@ -90,7 +122,7 @@ class TutorialsSpider(scrapy.Spider):
                 # Actual tutorial page link under section
                 url = chapter.xpath('./a/@href').get()
                 if not url:
-                    self.logger.warning(f"🚨 URL NOT FOUND for chapter: {chapter.get()}")
+                    self.logger.warning(f"🚨 URL NOT FOUND for chapter: {str(chapter.get())}")
                     continue
 
                 full_url = response.urljoin(url)
@@ -111,8 +143,6 @@ class TutorialsSpider(scrapy.Spider):
                     headers=random.choice(self.headers_list),
                     meta={
                         "proxy": random.choice(self.proxy_list),
-                        "retry_times": PROXY_RETRY_TIMES,
-                        "dont_retry": False
                     },
                     errback=self.errback_log
                 )
